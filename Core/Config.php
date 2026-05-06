@@ -1,11 +1,13 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+namespace Core;
 
-class Config{
+use PDO;
+use PDOException;
+
+class Config {
     private $host;
+    private $port;
     private $database;
     private $username;
     private $password;
@@ -14,6 +16,7 @@ class Config{
     public function __construct()
     {
         $this->host = $_ENV['DB_HOST'];
+        $this->port = $_ENV['DB_PORT'];
         $this->database = $_ENV['DB_NAME'];
         $this->username = $_ENV['DB_USERNAME'];
         $this->password = $_ENV['DB_PASSWORD'];
@@ -22,7 +25,7 @@ class Config{
         $this->connect = null;
         try{
             $this->connect = new PDO(
-                "mysql:host=".$this->host.";dbname=".$this->database,
+                "mysql:host=".$this->host.";port=".$this->port.";dbname=".$this->database,
                 $this->username,
                 $this->password
             );
@@ -33,4 +36,5 @@ class Config{
         return $this->connect;
     }
 }
+
 ?>
