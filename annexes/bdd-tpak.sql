@@ -27,9 +27,9 @@ CREATE DATABASE IF NOT EXISTS `bdd-tpak` DEFAULT CHARACTER SET utf8mb4 COLLATE u
 USE `bdd-tpak`;
 
 -- Create admin
-DROP USER IF EXISTS 'admin'@'localhost';
-CREATE USER IF NOT EXISTS 'admin'@'localhost' IDENTIFIED BY '';
-GRANT ALL PRIVILEGES ON `bdd-tpak`.* TO 'admin'@'localhost' WITH GRANT OPTION;
+DROP USER IF EXISTS 'DB_USERNAME'@'%';
+CREATE USER IF NOT EXISTS 'DB_USERNAME'@'%' IDENTIFIED BY 'DB_PASSWORD';
+GRANT ALL PRIVILEGES ON `bdd-tpak`.* TO 'DB_USERNAME'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 -- --------------------------------------------------------
 
