@@ -5,20 +5,15 @@ namespace App\Models;
 use PDO;
 
 /**
- * Model of the users table
+ * Model of the grpUsers table
  */
-class userModel {
+class grpUsersModel {
     private $connect;
-    private $table = "users";
+    private $table = "grpUsers";
 
     /** Table properties */
     public $id;
-    public $nomUser;
-    public $prenomUser;
-    public $phoneNb;
-    public $mailAddress;
-    public $password;
-    public $isAdmin;
+    public $id_user;
 
     /**
      * Constructor
@@ -31,12 +26,12 @@ class userModel {
     }
 
     /**
-     * Read the data from the columns in the users table
+     * Read the data from the columns in the grpUsers table
      * 
      * @return PDOStatement read data from the database
      */
     public function read(){
-        $query = "SELECT ID_USER, nom_user, prenom_user, tel, mail, password, is_admin FROM ".$this->table;
+        $query = "SELECT ID_GRPUSERS, ID_USER FROM ".$this->table;
         $data = $this->connect->prepare($query);
         $data->execute();
         return $data;

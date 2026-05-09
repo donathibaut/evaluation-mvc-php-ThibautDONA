@@ -5,20 +5,15 @@ namespace App\Models;
 use PDO;
 
 /**
- * Model of the users table
+ * Model of the agences table
  */
-class userModel {
+class agencesModel {
     private $connect;
-    private $table = "users";
+    private $table = "agences";
 
     /** Table properties */
     public $id;
-    public $nomUser;
-    public $prenomUser;
-    public $phoneNb;
-    public $mailAddress;
-    public $password;
-    public $isAdmin;
+    public $ville;
 
     /**
      * Constructor
@@ -31,12 +26,12 @@ class userModel {
     }
 
     /**
-     * Read the data from the columns in the users table
+     * Read the data from the columns in the agences table
      * 
      * @return PDOStatement read data from the database
      */
     public function read(){
-        $query = "SELECT ID_USER, nom_user, prenom_user, tel, mail, password, is_admin FROM ".$this->table;
+        $query = "SELECT ID_AGENCE, ville_agence FROM ".$this->table;
         $data = $this->connect->prepare($query);
         $data->execute();
         return $data;

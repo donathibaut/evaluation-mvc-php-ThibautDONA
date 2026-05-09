@@ -5,7 +5,14 @@ namespace Core;
 use PDO;
 use PDOException;
 
+/**
+ * Connection to the database
+ * 
+ * Class that allows to connect to the database
+ */
 class Config {
+
+    /** Connection props */
     private $host;
     private $port;
     private $database;
@@ -13,6 +20,11 @@ class Config {
     private $password;
     private $connect;
 
+    /**
+     * Constructor
+     * 
+     * Associate connection props to var
+     */
     public function __construct()
     {
         $this->host = $_ENV['DB_HOST'];
@@ -21,6 +33,12 @@ class Config {
         $this->username = $_ENV['DB_USERNAME'];
         $this->password = $_ENV['DB_PASSWORD'];
     }
+
+    /**
+     * Allow to create a connection instance to the database
+     * 
+     * @return PDO|null return the PDO object. If error -> null
+     */
     public function getConnection() {
         $this->connect = null;
         try{
