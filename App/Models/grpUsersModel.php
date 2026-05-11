@@ -7,7 +7,7 @@ use PDO;
 /**
  * Model of the grpUsers table
  */
-class grpUsersModel {
+class GrpUsersModel {
     private $connect;
     private $table = "grpUsers";
 
@@ -18,7 +18,7 @@ class grpUsersModel {
     /**
      * Constructor
      * 
-     * @param PDO connection instance to the database
+     * @param PDO $db connection instance to the database
      */
     public function __construct($db)
     {

@@ -7,7 +7,7 @@ use PDO;
 /**
  * Model of the users table
  */
-class userModel {
+class UserModel {
     private $connect;
     private $table = "users";
 
@@ -23,7 +23,7 @@ class userModel {
     /**
      * Constructor
      * 
-     * @param PDO connection instance to the database
+     * @param PDO $db connection instance to the database
      */
     public function __construct($db)
     {

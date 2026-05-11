@@ -2,10 +2,15 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+/**
+ * Init dotenv for the Config class
+ */
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../env');
 $dotenv->load();
 
-$readUser = new \App\Controllers\UserController();
-$readUser->readUser();
+use Routeur\Routeur;
+
+$routeur = new Routeur();
+$routeur->run();
 
 ?>
