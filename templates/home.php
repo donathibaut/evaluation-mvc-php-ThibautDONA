@@ -11,16 +11,18 @@
       <h1 class="logo">Touche pas au klaxon</h1>
       <nav>
         <ul>
-          <li><button class="navBtn">Créer un trajet</button></li>
-          <li>Bonjour Xxxx Xxxx</li>
-          <li><button class="navBtn">Déconnexion</button></li>
+          <li><a class="navBtn" href="login.php">Connexion</a></li>
         </ul>
       </nav>
     </header>
     <main>
       <table>
         <caption>
-          <h2>Trajets proposés</h2>
+          <!-- If not connected -> use this <h2> -->
+          <h2>
+            Pour obtenir plus d'informations sur un trajet, veuillez vous
+            connecter
+          </h2>
         </caption>
         <thead>
           <tr>
@@ -31,81 +33,23 @@
             <th scope="col">Date</th>
             <th scope="col">Heure</th>
             <th scope="col">Places</th>
-            <th scope="col">Interactions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="start">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="destination">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="nbSeats">x</td>
-            <td>
-              <button class="seeDrive">Voir</button>
-              <!-- modifyDrive & deleteDrive if it's your planned drive -->
-              <button class="modifyDrive">Modifier</button>
-              <button class="deleteDrive">Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="start">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="destination">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="nbSeats">x</td>
-            <td>
-              <button class="seeDrive">Voir</button>
-              <button class="modifyDrive">Modifier</button>
-              <button class="deleteDrive">Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="start">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="destination">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="nbSeats">x</td>
-            <td>
-              <button class="seeDrive">Voir</button>
-              <button class="modifyDrive">Modifier</button>
-              <button class="deleteDrive">Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="start">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="destination">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="nbSeats">x</td>
-            <td>
-              <button class="seeDrive">Voir</button>
-              <button class="modifyDrive">Modifier</button>
-              <button class="deleteDrive">Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="start">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="destination">x</td>
-            <td class="date">xx/xx/xx</td>
-            <td class="hour">xx:xx</td>
-            <td class="nbSeats">x</td>
-            <td>
-              <button class="seeDrive">Voir</button>
-              <button class="modifyDrive">Modifier</button>
-              <button class="deleteDrive">Supprimer</button>
-            </td>
-          </tr>
+          <!-- Load every registered drive from the database -->
+          <?php if(!empty($trajet)) : ?>
+            <?php foreach($trajet as $t) : ?>
+              <tr>
+                <td class="start"><?php echo $t['ville_depart'] ?></td>
+                <td class="date"><?php echo date('d/m/Y', strtotime($t['date_debut'])) ?></td>
+                <td class="hour"><?php echo date('H:i', strtotime($t['date_debut'])) ?></td>
+                <td class="destination"><?php echo $t['ville_destination'] ?></td>
+                <td class="date"><?php echo date('d/m/Y', strtotime($t['date_fin'])) ?></td>
+                <td class="hour"><?php echo date('H:i', strtotime($t['date_fin'])) ?></td>
+                <td class="nbSeats"><?php echo $t['nb_max_users'] ?></td>
+              </tr>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </tbody>
       </table>
     </main>

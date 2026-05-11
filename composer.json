@@ -6,6 +6,13 @@
       "email": "donathibaut02@gmail.com"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/",
+      "Core\\": "Core/",
+      "Routeur\\": "Routeur/"
+    }
+  },
   "require": {
     "izniburak/router": "^3.1",
     "phpdocumentor/shim": "^3.9",

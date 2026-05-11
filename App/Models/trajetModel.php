@@ -7,7 +7,7 @@ use PDO;
 /**
  * Model of the trajet table
  */
-class trajetModel {
+class TrajetModel {
     private $connect;
     private $table = "trajets";
 
@@ -25,7 +25,7 @@ class trajetModel {
     /**
      * Constructor
      * 
-     * @param PDO connection instance to the database
+     * @param PDO $db connection instance to the database
      */
     public function __construct($db)
     {
@@ -35,7 +35,7 @@ class trajetModel {
     /**
      * Read the data from the columns in the trajet table (and foreign keys)
      * 
-     * @return PDOStatement read data from the database
+     * @return array read data from the database
      */
     public function read(){
         $query = "SELECT t.ID_TRAJET, t.date_debut, t.date_fin, t.nb_users, t.nb_max_users, 
@@ -51,7 +51,7 @@ class trajetModel {
         LEFT JOIN grpUsers g ON t.ID_GRPUSERS = g.ID_GRPUSERS";
         $data = $this->connect->prepare($query);
         $data->execute();
-        return $data;
+        return $data->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

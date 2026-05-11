@@ -7,7 +7,7 @@ use PDO;
 /**
  * Model of the agences table
  */
-class agencesModel {
+class AgencesModel {
     private $connect;
     private $table = "agences";
 
@@ -18,7 +18,7 @@ class agencesModel {
     /**
      * Constructor
      * 
-     * @param PDO connection instance to the database
+     * @param PDO $db connection instance to the database
      */
     public function __construct($db)
     {
