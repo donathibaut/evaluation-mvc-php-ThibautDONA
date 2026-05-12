@@ -11,12 +11,18 @@
     </header>
     <main>
         <h2>Formulaire de connexion</h2>
-        <form action="" method="post">
 
-            <label for="id">Identifiant : </label>
-            <input name="id" id="id" type="text" required>
+        <!-- If connection error -> error message -->
+        <?php if(isset($err)) : ?>
+          <p class="error"><?php echo $err ?></p>
+        <?php endif; ?>
 
-            <label for="password">Mot de passe : </label>
+        <form action="index.php?page=login" method="post">
+
+            <label for="mail">Adresse Mail : </label>
+            <input name="mail" id="mail" type="email" required>
+
+            <label for="password">Mot de Passe : </label>
             <input name="password" id="password" type="password" required>
 
             <button type="submit">Me Connecter</button>

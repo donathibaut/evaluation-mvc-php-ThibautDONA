@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fr">
   <head>
@@ -11,7 +10,7 @@
       <h1 class="logo">Touche pas au klaxon</h1>
       <nav>
         <ul>
-          <li><a class="navBtn" href="login.php">Connexion</a></li>
+          <li><a class="navBtn" href="index.php?page=login">Connexion</a></li>
         </ul>
       </nav>
     </header>

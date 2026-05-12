@@ -3,6 +3,7 @@
 namespace Routeur;
 
 use App\Controllers\TrajetController;
+use App\Controllers\UserController;
 
 /**
  * Routing of the website
@@ -21,15 +22,19 @@ class Routeur {
                 break;
 
             case 'login' :
-                echo "nothing here";
+                $login = new UserController();
+                $login->login();
                 break;
 
-            case 'edition' :
-                echo "nothing here";
-                break;
-
-            case 'admin_dashboard' :
-                echo "nothing here";
+            case 'dashboard' :
+                // if admin connected -> can access to the dashboard
+                if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
+                    $adminAccess = new UserController();
+                    $adminAccess->displayDashboard();
+                } else {
+                    header('Location: index.php?page=login');
+                    exit;
+                }
                 break;
 
             default :

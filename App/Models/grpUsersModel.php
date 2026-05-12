@@ -28,13 +28,13 @@ class GrpUsersModel {
     /**
      * Read the data from the columns in the grpUsers table
      * 
-     * @return PDOStatement read data from the database
+     * @return array read data from the database
      */
     public function read(){
         $query = "SELECT ID_GRPUSERS, ID_USER FROM ".$this->table;
         $data = $this->connect->prepare($query);
         $data->execute();
-        return $data;
+        return $data->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

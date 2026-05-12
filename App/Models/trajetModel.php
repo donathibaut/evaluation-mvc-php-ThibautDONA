@@ -11,17 +11,6 @@ class TrajetModel {
     private $connect;
     private $table = "trajets";
 
-    /** Table properties */
-    public $id;
-    public $dateDebut;
-    public $dateFin;
-    public $nbUsers;
-    public $nbMaxUsers;
-    public $idDestination;
-    public $idDepart;
-    public $idUser;
-    public $idGrpUsers;
-
     /**
      * Constructor
      * 
