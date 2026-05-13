@@ -7,7 +7,7 @@
   </head>
   <body>
     <header>
-      <h1 class="logo">Touche pas au klaxon</h1>
+      <h1 class="logo"><a href="index.php?page=home">Touche pas au klaxon</a></h1>
     </header>
     <main>
         <h2>Formulaire de connexion</h2>
@@ -17,7 +17,7 @@
           <p class="error"><?php echo $err ?></p>
         <?php endif; ?>
 
-        <form action="index.php?page=login" method="post">
+        <form action="index.php?page=login" method="post" autocomplete="off">
 
             <label for="mail">Adresse Mail : </label>
             <input name="mail" id="mail" type="email" required>

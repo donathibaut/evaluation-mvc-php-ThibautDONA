@@ -11,10 +11,6 @@ class GrpUsersModel {
     private $connect;
     private $table = "grpUsers";
 
-    /** Table properties */
-    public $id;
-    public $id_user;
-
     /**
      * Constructor
      * 

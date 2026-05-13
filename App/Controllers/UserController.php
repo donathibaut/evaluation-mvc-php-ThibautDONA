@@ -7,7 +7,7 @@ use Core\Config;
 class UserController {
 
     /**
-     * Verify and create the web session of the connecting user
+     * Verify and create the session of the connecting user
      */
     public function login() {
         $err = null;
@@ -30,6 +30,12 @@ class UserController {
                     $_SESSION['ID_USER'] = $user['ID_USER'];
                     $_SESSION['is_admin'] = $user['is_admin'];
                     $_SESSION['nom_user'] = $user['nom_user'];
+                    $_SESSION['prenom_user'] = $user['prenom_user'];
+                    $_SESSION['tel'] = $user['tel'];
+                    $_SESSION['mail'] = $user['mail'];
+
+                    // Login succeeded
+                    $_SESSION['successMess'] = "Vous êtes connecté !";
 
                     header('Location: index.php?page=home');
 
@@ -44,8 +50,19 @@ class UserController {
         include __DIR__ . '/../../templates/login.php';
     }
 
-    public function displayDashboard() {
-        include __DIR__ . '/../../templates/dashboard.php';
+    /**
+     * Dismantle the user session
+     */
+    public function logout() {
+
+        /** Delete the session array */
+        $_SESSION = array();
+
+        // Logout succeeded
+        $_SESSION['successMess'] = "Vous êtes déconnecté !";
+
+        header('Location: index.php?page=home');
+        exit;
     }
 }
 

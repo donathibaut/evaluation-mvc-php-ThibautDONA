@@ -6,22 +6,58 @@
     <title>Accueil</title>
   </head>
   <body>
+    <!-- <header> depends on the user auth (Not-Connected/Connected/Connected as an Admin) -->
     <header>
-      <h1 class="logo">Touche pas au klaxon</h1>
-      <nav>
-        <ul>
-          <li><a class="navBtn" href="index.php?page=login">Connexion</a></li>
-        </ul>
-      </nav>
+      <h1 class="logo"><a href="index.php?page=home">Touche pas au klaxon</a></h1>
+
+      <?php if(isset($_SESSION['is_admin'])) : ?>
+        <nav>
+          <ul>
+            <?php if($_SESSION['is_admin'] == 1) : ?>
+              <li><a class="navAdminBtn" href="">Utilisateurs</a></li>
+              <li><a class="navAdminBtn" href="">Agences</a></li>
+              <li><a class="navAdminBtn" href="">Trajets</a></li>
+            <?php else: ?>
+              <li><a class="navBtn" href="">Créer un trajet</a></li>
+            <?php endif; ?>
+            <li><p>Bonjour <?php echo $_SESSION['prenom_user'] . " " . $_SESSION['nom_user'] ?></p></li>
+            <li><a class="navBtn" href="index.php?page=logout">Déconnexion</a></li>
+          </ul>
+        </nav>
+      <?php else: ?>
+        <nav>
+          <ul>
+            <li><a class="navBtn" href="index.php?page=login">Connexion</a></li>
+          </ul>
+        </nav>
+      <?php endif; ?>
+
     </header>
     <main>
+
+      <?php if(isset($_SESSION['successMess'])) : ?>
+        <p><?php echo $_SESSION['successMess'] ?></p>
+        <?php unset($_SESSION['successMess']) ?>
+        <?php if(!isset($_SESSION['ID_USER'])) : ?>
+          <?php         
+            /** Delete the session cookie */
+            session_destroy(); 
+          ?>
+        <?php endif; ?>
+      <?php endif; ?>
+
+      <!-- <table> depends on the user auth -->
       <table>
         <caption>
+
           <!-- If not connected -> use this <h2> -->
-          <h2>
-            Pour obtenir plus d'informations sur un trajet, veuillez vous
-            connecter
-          </h2>
+          <?php if(!isset($_SESSION['is_admin'])) : ?>
+            <p>
+              Pour obtenir plus d'informations sur un trajet, veuillez vous
+              connecter
+            </p>
+          <?php endif; ?>
+
         </caption>
         <thead>
           <tr>
@@ -35,6 +71,7 @@
           </tr>
         </thead>
         <tbody>
+
           <!-- Load every registered drive from the database -->
           <?php if(!empty($trajet)) : ?>
             <?php foreach($trajet as $t) : ?>
@@ -49,6 +86,7 @@
               </tr>
             <?php endforeach; ?>
           <?php endif; ?>
+
         </tbody>
       </table>
     </main>

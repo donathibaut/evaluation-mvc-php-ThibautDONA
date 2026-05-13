@@ -11,15 +11,6 @@ class UserModel {
     private $connect;
     private $table = "users";
 
-    /** Table properties */
-    public $id;
-    public $nomUser;
-    public $prenomUser;
-    public $phoneNb;
-    public $mailAddress;
-    public $password;
-    public $isAdmin;
-
     /**
      * Constructor
      * 
@@ -49,7 +40,7 @@ class UserModel {
      * @return array read the corresponding user
      */
     public function findOne($mail) {
-        $query = "SELECT mail, password, is_admin FROM "
+        $query = "SELECT ID_USER, nom_user, prenom_user, tel, mail, password, is_admin FROM "
         .$this->table
         ." WHERE mail = :mail";
         $data = $this->connect->prepare($query);

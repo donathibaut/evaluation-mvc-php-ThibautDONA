@@ -13,6 +13,8 @@ class Routeur {
      * Manage the routes by cases
      */
     public function run() {
+        session_start();
+
         $page = $_GET['page'] ?? 'home';
 
         switch($page) {
@@ -26,15 +28,9 @@ class Routeur {
                 $login->login();
                 break;
 
-            case 'dashboard' :
-                // if admin connected -> can access to the dashboard
-                if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
-                    $adminAccess = new UserController();
-                    $adminAccess->displayDashboard();
-                } else {
-                    header('Location: index.php?page=login');
-                    exit;
-                }
+            case 'logout' :
+                $logout = new UserController();
+                $logout->logout();
                 break;
 
             default :

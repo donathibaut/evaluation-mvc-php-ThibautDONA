@@ -10,11 +10,7 @@ use PDO;
 class AgencesModel {
     private $connect;
     private $table = "agences";
-
-    /** Table properties */
-    public $id;
-    public $ville;
-
+    
     /**
      * Constructor
      * 
