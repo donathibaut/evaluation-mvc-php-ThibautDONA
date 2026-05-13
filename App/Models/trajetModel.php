@@ -30,6 +30,7 @@ class TrajetModel {
         $query = "SELECT t.ID_TRAJET, t.date_debut, t.date_fin, t.nb_users, t.nb_max_users, 
             a_dest.ville_agence AS ville_destination, 
             a_dep.ville_agence AS ville_depart, 
+            u.ID_USER,
             u.nom_user,
             u.prenom_user, 
             g.ID_GRPUSERS FROM ".

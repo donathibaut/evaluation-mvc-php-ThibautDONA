@@ -35,15 +35,18 @@
     </header>
     <main>
 
+      <!-- Login / Logout message -->
       <?php if(isset($_SESSION['successMess'])) : ?>
         <p><?php echo $_SESSION['successMess'] ?></p>
         <?php unset($_SESSION['successMess']) ?>
+
         <?php if(!isset($_SESSION['ID_USER'])) : ?>
           <?php         
             /** Delete the session cookie */
             session_destroy(); 
           ?>
         <?php endif; ?>
+
       <?php endif; ?>
 
       <!-- <table> depends on the user auth -->
@@ -73,16 +76,34 @@
         <tbody>
 
           <!-- Load every registered drive from the database -->
-          <?php if(!empty($trajet)) : ?>
+          <?php 
+            // $trajet from TrajetController : $trajet = $trajetService->getTrajetsList();
+            if(!empty($trajet)) : 
+          ?>
             <?php foreach($trajet as $t) : ?>
               <tr>
-                <td class="start"><?php echo $t['ville_depart'] ?></td>
-                <td class="date"><?php echo date('d/m/Y', strtotime($t['date_debut'])) ?></td>
-                <td class="hour"><?php echo date('H:i', strtotime($t['date_debut'])) ?></td>
-                <td class="destination"><?php echo $t['ville_destination'] ?></td>
-                <td class="date"><?php echo date('d/m/Y', strtotime($t['date_fin'])) ?></td>
-                <td class="hour"><?php echo date('H:i', strtotime($t['date_fin'])) ?></td>
-                <td class="nbSeats"><?php echo $t['nb_max_users'] ?></td>
+                <td class="start cell"><?php echo $t['ville_depart'] ?></td>
+                <td class="date cell"><?php echo date('d/m/Y', strtotime($t['date_debut'])) ?></td>
+                <td class="hour cell"><?php echo date('H:i', strtotime($t['date_debut'])) ?></td>
+                <td class="destination cell"><?php echo $t['ville_destination'] ?></td>
+                <td class="date cell"><?php echo date('d/m/Y', strtotime($t['date_fin'])) ?></td>
+                <td class="hour cell"><?php echo date('H:i', strtotime($t['date_fin'])) ?></td>
+                <td class="nbSeats cell"><?php echo $t['nb_max_users'] ?></td>
+
+                <!-- Interactions with the table -->
+                <?php if(isset($_SESSION['ID_USER'])) : ?>
+                  <td class="cell">
+                    <button>Voir</button>
+                    <?php 
+                      // If the connected user => editor of the "trajet" : can modify/delete it
+                      if($_SESSION['ID_USER'] === $t['ID_USER']) : 
+                    ?>
+                      <button>Modifier</button>
+                      <button>Supprimer</button>
+                    <?php endif; ?>
+                  </td>
+                <?php endif; ?>
+
               </tr>
             <?php endforeach; ?>
           <?php endif; ?>
