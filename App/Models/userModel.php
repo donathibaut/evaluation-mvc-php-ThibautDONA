@@ -11,15 +11,6 @@ class UserModel {
     private $connect;
     private $table = "users";
 
-    /** Table properties */
-    public $id;
-    public $nomUser;
-    public $prenomUser;
-    public $phoneNb;
-    public $mailAddress;
-    public $password;
-    public $isAdmin;
-
     /**
      * Constructor
      * 
@@ -33,13 +24,30 @@ class UserModel {
     /**
      * Read the data from the columns in the users table
      * 
-     * @return PDOStatement read data from the database
+     * @return array read data from the database
      */
     public function read(){
         $query = "SELECT ID_USER, nom_user, prenom_user, tel, mail, password, is_admin FROM ".$this->table;
         $data = $this->connect->prepare($query);
         $data->execute();
-        return $data;
+        return $data->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Find the matching user by email address
+     * 
+     * @param string $mail
+     * @return array read the corresponding user
+     */
+    public function findOne($mail) {
+        $query = "SELECT ID_USER, nom_user, prenom_user, tel, mail, password, is_admin FROM "
+        .$this->table
+        ." WHERE mail = :mail";
+        $data = $this->connect->prepare($query);
+        // bindParam -> avoid SQL injections 
+        $data->bindParam(':mail', $mail);
+        $data->execute();
+        return $data->fetch(PDO::FETCH_ASSOC);
     }
 }
 

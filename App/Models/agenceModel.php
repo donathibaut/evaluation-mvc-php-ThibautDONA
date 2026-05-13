@@ -10,11 +10,7 @@ use PDO;
 class AgencesModel {
     private $connect;
     private $table = "agences";
-
-    /** Table properties */
-    public $id;
-    public $ville;
-
+    
     /**
      * Constructor
      * 
@@ -28,13 +24,13 @@ class AgencesModel {
     /**
      * Read the data from the columns in the agences table
      * 
-     * @return PDOStatement read data from the database
+     * @return array read data from the database
      */
     public function read(){
         $query = "SELECT ID_AGENCE, ville_agence FROM ".$this->table;
         $data = $this->connect->prepare($query);
         $data->execute();
-        return $data;
+        return $data->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

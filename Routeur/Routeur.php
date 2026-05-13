@@ -3,6 +3,7 @@
 namespace Routeur;
 
 use App\Controllers\TrajetController;
+use App\Controllers\UserController;
 
 /**
  * Routing of the website
@@ -12,6 +13,8 @@ class Routeur {
      * Manage the routes by cases
      */
     public function run() {
+        session_start();
+
         $page = $_GET['page'] ?? 'home';
 
         switch($page) {
@@ -21,15 +24,13 @@ class Routeur {
                 break;
 
             case 'login' :
-                echo "nothing here";
+                $login = new UserController();
+                $login->login();
                 break;
 
-            case 'edition' :
-                echo "nothing here";
-                break;
-
-            case 'admin_dashboard' :
-                echo "nothing here";
+            case 'logout' :
+                $logout = new UserController();
+                $logout->logout();
                 break;
 
             default :
