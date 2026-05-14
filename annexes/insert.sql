@@ -8,12 +8,10 @@ USE `bdd-tpak`;
 
 DELETE FROM `trajets`;
 DELETE FROM `agences`;
-DELETE FROM `grpUsers`;
 DELETE FROM `users`;
 
 ALTER TABLE `trajets` AUTO_INCREMENT = 1;
 ALTER TABLE `agences` AUTO_INCREMENT = 1;
-ALTER TABLE `grpUsers` AUTO_INCREMENT = 1;
 ALTER TABLE `users` AUTO_INCREMENT = 1;
 
 --
@@ -21,7 +19,7 @@ ALTER TABLE `users` AUTO_INCREMENT = 1;
 --
 
 INSERT INTO users (nom_user, prenom_user, tel, mail, password, is_admin) VALUES
-('Ladmin','Amine','0612345678','admin@email.fr', '$2y$10$Mz.a1.4i2KeOC05Qb2YOoO9hEO01rAtS9LmI1dOJMdOHsbPsKaqW6', 1),
+('Ladmin','Amine','0615345678','admin@email.fr', '$2y$10$Mz.a1.4i2KeOC05Qb2YOoO9hEO01rAtS9LmI1dOJMdOHsbPsKaqW6', 1),
 ('Martin','Alexandre','0612345678','alexandre.martin@email.fr', '$2y$10$OfPjBa7YceVi8kpu7.duOegc2lHUvz/BjMKfCZbzznq4kpDTOHohS', 0),
 ('Dubois','Sophie','0698765432','sophie.dubois@email.fr', '$2y$10$OfPjBa7YceVi8kpu7.duOegc2lHUvz/BjMKfCZbzznq4kpDTOHohS', 0),
 ('Bernard','Julien','0622446688','julien.bernard@email.fr', '$2y$10$OfPjBa7YceVi8kpu7.duOegc2lHUvz/BjMKfCZbzznq4kpDTOHohS', 0),

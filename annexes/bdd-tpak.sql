@@ -46,18 +46,6 @@ CREATE TABLE `agences` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grpUsers`
---
-
-DROP TABLE IF EXISTS `grpUsers`;
-CREATE TABLE `grpUsers` (
-  `ID_GRPUSERS` int NOT NULL,
-  `ID_USER` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `trajets`
 --
 
@@ -70,8 +58,7 @@ CREATE TABLE `trajets` (
   `nb_max_users` int NOT NULL DEFAULT '1',
   `ID_DESTINATION` int NOT NULL,
   `ID_DEPART` int NOT NULL,
-  `ID_USER` int NOT NULL,
-  `ID_GRPUSERS` int NOT NULL
+  `ID_USER` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -103,21 +90,13 @@ ALTER TABLE `agences`
   ADD UNIQUE KEY `ville_agence` (`ville_agence`);
 
 --
--- Indexes for table `grpUsers`
---
-ALTER TABLE `grpUsers`
-  ADD PRIMARY KEY (`ID_GRPUSERS`),
-  ADD KEY `ID_USER` (`ID_USER`);
-
---
 -- Indexes for table `trajets`
 --
 ALTER TABLE `trajets`
   ADD PRIMARY KEY (`ID_TRAJET`),
   ADD KEY `ID_DESTINATION` (`ID_DESTINATION`),
   ADD KEY `ID_DEPART` (`ID_DEPART`),
-  ADD KEY `ID_USER` (`ID_USER`),
-  ADD KEY `ID_GRPUSERS` (`ID_GRPUSERS`);
+  ADD KEY `ID_USER` (`ID_USER`);
 
 --
 -- Indexes for table `users`
@@ -137,11 +116,6 @@ ALTER TABLE `users`
 ALTER TABLE `agences`
   MODIFY `ID_AGENCE` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
---
--- AUTO_INCREMENT for table `grpUsers`
---
-ALTER TABLE `grpUsers`
-  MODIFY `ID_GRPUSERS` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `trajets`
@@ -160,19 +134,12 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `grpUsers`
---
-ALTER TABLE `grpUsers`
-  ADD CONSTRAINT `grpUsers_ibfk_1` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID_USER`);
-
---
 -- Constraints for table `trajets`
 --
 ALTER TABLE `trajets`
   ADD CONSTRAINT `trajets_ibfk_1` FOREIGN KEY (`ID_DESTINATION`) REFERENCES `agences` (`ID_AGENCE`),
   ADD CONSTRAINT `trajets_ibfk_2` FOREIGN KEY (`ID_DEPART`) REFERENCES `agences` (`ID_AGENCE`),
-  ADD CONSTRAINT `trajets_ibfk_3` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID_USER`),
-  ADD CONSTRAINT `trajets_ibfk_4` FOREIGN KEY (`ID_GRPUSERS`) REFERENCES `grpUsers` (`ID_GRPUSERS`);
+  ADD CONSTRAINT `trajets_ibfk_3` FOREIGN KEY (`ID_USER`) REFERENCES `users` (`ID_USER`);
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 

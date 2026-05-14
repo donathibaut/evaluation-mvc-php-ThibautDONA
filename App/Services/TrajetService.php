@@ -25,6 +25,15 @@ class TrajetService {
     public function getTrajetsList() {
         return $this->trajetModel->read();
     }
+
+    /**
+     * Send the form array to the create function
+     * 
+     * @return bool success of the sql request : true/false
+     */
+    public function createTrajet($formCreate) {
+        return $this->trajetModel->create($formCreate);
+    }
 }
 
 ?>

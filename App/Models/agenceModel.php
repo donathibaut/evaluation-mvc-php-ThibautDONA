@@ -5,12 +5,12 @@ namespace App\Models;
 use PDO;
 
 /**
- * Model of the agences table
+ * Model of the agence table
  */
-class AgencesModel {
+class AgenceModel {
     private $connect;
     private $table = "agences";
-    
+
     /**
      * Constructor
      * 
@@ -22,12 +22,13 @@ class AgencesModel {
     }
 
     /**
-     * Read the data from the columns in the agences table
+     * Read the data from the columns in the agence table (and foreign keys)
      * 
      * @return array read data from the database
      */
     public function read(){
-        $query = "SELECT ID_AGENCE, ville_agence FROM ".$this->table;
+        $query = "SELECT ID_AGENCE, ville_agence FROM ".
+        $this->table;
         $data = $this->connect->prepare($query);
         $data->execute();
         return $data->fetchAll(PDO::FETCH_ASSOC);

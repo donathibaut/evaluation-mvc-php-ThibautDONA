@@ -15,12 +15,29 @@ class Routeur {
     public function run() {
         session_start();
 
+        //PAGES
         $page = $_GET['page'] ?? 'home';
 
         switch($page) {
             case 'home' :
-                $control = new TrajetController();
-                $control->linkDataView();
+                $ctrlTrajet = new TrajetController();
+
+                //CRUD
+                $crud = $_GET['crud'] ?? null;
+                if($crud === 'create') {
+                    $ctrlTrajet->ctrlCreateTrajet($_POST);
+                }
+
+                /**
+                 * Routing request for '?form='|null.
+                 * Manage the agences list for the form <select> (form-create)
+                 * @var string|null $form
+                 */
+                $form = $_GET['form'] ?? null;
+
+                // Display trajet data and, if necessary, the form-create
+                $ctrlTrajet->linkDataView($form);
+
                 break;
 
             case 'login' :
