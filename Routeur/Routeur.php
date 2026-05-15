@@ -24,8 +24,26 @@ class Routeur {
 
                 //CRUD
                 $crud = $_GET['crud'] ?? null;
+
+                //CREATE
                 if($crud === 'create') {
                     $ctrlTrajet->ctrlCreateTrajet($_POST);
+                }
+
+                //DELETE
+                if($crud === 'delete') {
+                    if(isset($_GET['trajet_id'])) {
+                        $trajetID = $_GET['trajet_id'];
+
+                        if(isset($_GET['author_id'])) {
+                            $authorID = $_GET['author_id'];
+                            $ctrlTrajet->ctrlDeleteTrajet($trajetID, $authorID);            
+                        } else {
+                            exit("ID Error : Ce trajet n'a pas d'auteur");
+                        }
+                    } else {
+                        exit("ID Error : Ce trajet n'a pas d'identifiant");
+                    }
                 }
 
                 /**

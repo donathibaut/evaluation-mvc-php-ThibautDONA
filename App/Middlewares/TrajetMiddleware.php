@@ -54,6 +54,20 @@ class TrajetMiddleware {
         $trajetService = new TrajetService($this->connect);
         return $trajetService->createTrajet($formCreate);
     }
+
+    /**
+     * + Check if the user is the author of the trajet
+     * 
+     * @return bool success of the sql request : true/false
+     */
+    public function deleteTrajetMW(string $trajetID, string $authorID) {
+        if($_SESSION['ID_USER'] != $authorID && $_SESSION['is_admin'] === 0) {
+            exit("Author Error : Vous n'êtes pas l'auteur de ce trajet !");
+        }
+
+        $trajetService = new TrajetService($this->connect);
+        return $trajetService->deleteTrajet($trajetID);
+    }
 }
 
 ?>

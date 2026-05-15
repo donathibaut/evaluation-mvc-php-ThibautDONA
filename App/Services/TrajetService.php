@@ -31,8 +31,17 @@ class TrajetService {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function createTrajet($formCreate) {
+    public function createTrajet(array $formCreate) {
         return $this->trajetModel->create($formCreate);
+    }
+
+    /**
+     * Send the trajet ID to the delete function
+     * 
+     * @return bool success of the sql request : true/false
+     */
+    public function deleteTrajet(string $trajetID) {
+        return $this->trajetModel->delete($trajetID);
     }
 }
 

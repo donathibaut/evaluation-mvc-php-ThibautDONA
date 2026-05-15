@@ -5,7 +5,7 @@
             //ADMIN
             if($_SESSION['is_admin'] == 1) : 
         ?>
-            <li><a class="navAdminBtn" href="">Utilisateurs</a></li>
+            <li><a class="navAdminBtn" href="index.php?page=home">Utilisateurs</a></li>
             <li><a class="navAdminBtn" href="">Agences</a></li>
             <li><a class="navAdminBtn" href="">Trajets</a></li>
         <?php 

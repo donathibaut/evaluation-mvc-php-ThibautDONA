@@ -50,10 +50,31 @@ class TrajetController {
             exit("Connection Error : Pas d'accès à la base de données");
         } else {
             $trajetMiddleware = new TrajetMiddleware($db);
-            $sent = $trajetMiddleware->createTrajetMW($formCreate);
+            $mw = $trajetMiddleware->createTrajetMW($formCreate);
 
             // Avoid duplicated sql INSERT on refresh
-            if($sent) {
+            if($mw) {
+                header('Location: index.php?page=home');
+                exit;
+            }
+        }
+    }
+
+    /**
+     * Control the trajet deletion path
+     */
+    public function ctrlDeleteTrajet(string $trajetID, string $authorID) {
+        $config = new Config();
+        $db = $config->getConnection();
+
+        if ($db === null) {
+            exit("Connection Error : Pas d'accès à la base de données");
+        } else {
+            $trajetMiddleware = new TrajetMiddleware($db);
+            $mw = $trajetMiddleware->deleteTrajetMW($trajetID, $authorID);
+
+            // Avoid duplicated sql DELETE attempts on refresh
+            if($mw) {
                 header('Location: index.php?page=home');
                 exit;
             }

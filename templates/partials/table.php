@@ -26,18 +26,20 @@
             <td class="destination cell"><?php echo $t['ville_destination'] ?></td>
             <td class="date cell"><?php echo date('d/m/Y', strtotime($t['date_fin'])) ?></td>
             <td class="hour cell"><?php echo date('H:i', strtotime($t['date_fin'])) ?></td>
-            <td class="nbSeats cell"><?php echo $t['nb_max_users'] ?></td>
+            <td class="nbSeats cell"><?php echo $t['nb_max_users']-$t['nb_users'] ?></td>
 
             <!-- Interactions with the table -->
             <?php if(isset($_SESSION['ID_USER'])) : ?>
                 <td class="cell">
-                <button>Voir</button>
+                <a href="">Voir</a>
                 <?php 
                     // If the connected user => editor of the "trajet" : can modify/delete it
-                    if($_SESSION['ID_USER'] === $t['ID_USER']) : 
+                    if($_SESSION['ID_USER'] === $t['ID_USER'] || $_SESSION['is_admin'] === 1) : 
                 ?>
-                    <button>Modifier</button>
-                    <button>Supprimer</button>
+                    <?php if($_SESSION['is_admin'] === 0) : ?>
+                        <a href="">Modifier</a>
+                    <?php endif; ?>
+                    <a href="index.php?page=home&crud=delete&trajet_id=<?php echo $t['ID_TRAJET']; ?>&author_id=<?php echo $t['ID_USER']; ?>">Supprimer</a>
                 <?php endif; ?>
                 </td>
             <?php endif; ?>
