@@ -37,9 +37,15 @@
                     if($_SESSION['ID_USER'] === $t['ID_USER'] || $_SESSION['is_admin'] === 1) : 
                 ?>
                     <?php if($_SESSION['is_admin'] === 0) : ?>
-                        <a href="">Modifier</a>
+                        <?php if(isset($_GET['form-goal']) && $_GET['form-goal'] === "update" && isset($_GET['trajet_id']) && $_GET['trajet_id'] == $t['ID_TRAJET']) : ?>
+                            <a href="index.php?page=home">Annuler</a>
+                        <?php else: ?>
+                            <a href="index.php?page=home&form=form-trajet&form-goal=update&trajet_id=<?php echo $t['ID_TRAJET'] ?>">Modifier</a>
+                        <?php endif; ?>
                     <?php endif; ?>
-                    <a href="index.php?page=home&crud=delete&trajet_id=<?php echo $t['ID_TRAJET']; ?>&author_id=<?php echo $t['ID_USER']; ?>">Supprimer</a>
+                    <a href="index.php?page=home&crud=delete&trajet_id=<?php echo $t['ID_TRAJET']; ?>&author_id=<?php echo $t['ID_USER']; ?>">
+                        Supprimer
+                    </a>
                 <?php endif; ?>
                 </td>
             <?php endif; ?>

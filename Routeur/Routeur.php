@@ -46,14 +46,33 @@ class Routeur {
                     }
                 }
 
+                //UPDATE
+                if($crud === 'update') {
+                    // verify first if the form has been submitted
+                    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        if(isset($_GET['trajet_id'])) {
+                            $trajetID = $_GET['trajet_id'];
+
+                            if(isset($_GET['author_id'])) {
+                                $authorID = $_GET['author_id'];
+                                $ctrlTrajet->ctrlUpdateTrajet($_POST, $trajetID, $authorID);            
+                            } else {
+                                exit("ID Error : Ce trajet n'a pas d'auteur");
+                            }
+                        } else {
+                            exit("ID Error : Ce trajet n'a pas d'identifiant");
+                        }
+                    }
+                }
+
                 /**
                  * Routing request for '?form='|null.
-                 * Manage the agences list for the form <select> (form-create)
+                 * Manage the agences list for the form <select> (form-trajet)
                  * @var string|null $form
                  */
                 $form = $_GET['form'] ?? null;
 
-                // Display trajet data and, if necessary, the form-create
+                // Display trajet data and, if necessary, the form-trajet
                 $ctrlTrajet->linkDataView($form);
 
                 break;

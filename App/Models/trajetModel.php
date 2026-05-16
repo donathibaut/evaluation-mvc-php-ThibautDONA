@@ -45,6 +45,31 @@ class TrajetModel {
     }
 
     /**
+     * Read one trajet from the trajets table
+     * 
+     * @return array read data from the database
+     */
+    public function readOne(string $thisOne){
+        $query = "SELECT t.ID_TRAJET, t.date_debut, t.date_fin, t.nb_users, t.nb_max_users, 
+            t.ID_DEPART, t.ID_DESTINATION,
+            a_dest.ville_agence AS ville_destination, 
+            a_dep.ville_agence AS ville_depart, 
+            u.ID_USER,
+            u.nom_user,
+            u.prenom_user FROM ".
+        $this->table.
+        " t LEFT JOIN users u ON t.ID_USER = u.ID_USER
+        LEFT JOIN agences a_dep ON t.ID_DEPART = a_dep.ID_AGENCE
+        LEFT JOIN agences a_dest ON t.ID_DESTINATION = a_dest.ID_AGENCE
+        WHERE t.ID_TRAJET = :trajet_id";
+        $data = $this->connect->prepare($query);
+        $data->execute([
+            ':trajet_id' => $thisOne
+        ]);
+        return $data->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
      * Create new data in the trajet table
      * 
      * @return bool create a new trajet
@@ -80,6 +105,36 @@ class TrajetModel {
         $delete = $this->connect->prepare($query);
 
         return $delete->execute([':id' => $trajetID]);
+    }
+
+    /**
+     * Update data in the trajet table
+     * 
+     * @return bool update a trajet
+     */
+    public function update(array $formUpdate, string $trajetID){
+        $query = "UPDATE trajets 
+        SET nb_users = :nb_users, 
+        nb_max_users = :nb_max_users, 
+        date_debut = :date_debut, 
+        ID_DEPART = :a_dep, 
+        date_fin = :date_fin, 
+        ID_DESTINATION = :a_dest, 
+        ID_USER = :id_user
+        WHERE ID_TRAJET = :id";
+
+        $update = $this->connect->prepare($query);
+
+        return $update->execute([
+            ':nb_users' => $formUpdate['nb_users'],
+            ':nb_max_users' => $formUpdate['nb_max_users'],
+            ':date_debut' => $formUpdate['date_debut'],
+            ':a_dep' => $formUpdate['a_dep'],
+            ':date_fin' => $formUpdate['date_fin'],
+            ':a_dest' => $formUpdate['a_dest'],
+            ':id_user' => $_SESSION['ID_USER'],
+            ':id' => $trajetID
+        ]);
     }
 }
 

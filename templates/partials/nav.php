@@ -12,7 +12,7 @@
             //NON-ADMIN
             else: 
         ?>
-            <li><a class="navBtn" href="index.php?form=form-create">Créer un trajet</a></li>
+            <li><a class="navBtn" href="index.php?page=home&form=form-trajet&form-goal=create">Créer un trajet</a></li>
         <?php endif; ?>
         <li><p>Bonjour <?php echo $_SESSION['prenom_user'] . " " . $_SESSION['nom_user'] ?></p></li>
         <li><a class="navBtn" href="index.php?page=logout">Déconnexion</a></li>

@@ -29,7 +29,7 @@ class TrajetMiddleware {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function createTrajetMW($formCreate) {
+    public function createTrajetMW(array $formCreate) {
         if(!isset($_SESSION['ID_USER'])) {
             exit("Connection Error : Vous n'êtes pas connecté");
         }
@@ -67,6 +67,46 @@ class TrajetMiddleware {
 
         $trajetService = new TrajetService($this->connect);
         return $trajetService->deleteTrajet($trajetID);
+    }
+
+    /**
+     * + Check if the user is the author of the trajet
+     * + Check if the user is connected before saving the trajet
+     * + Check if nb_users <= nb_max_users
+     * + Check if nb_users & nb_max_users have a positive value
+     * + Check if date_debut < date_fin
+     * + Check if a_dep != a_dest
+     * 
+     * @return bool success of the sql request : true/false
+     */
+    public function updateTrajetMW(array $formUpdate, string $trajetID, string $authorID) {
+        if($_SESSION['ID_USER'] != $authorID && $_SESSION['is_admin'] === 0) {
+            exit("Author Error : Vous n'êtes pas l'auteur de ce trajet !");
+        }
+    
+        if(!isset($_SESSION['ID_USER'])) {
+            exit("Connection Error : Vous n'êtes pas connecté");
+        }
+
+        if($formUpdate['nb_users'] > $formUpdate['nb_max_users']) {
+            exit("Value Error : Le nombre de personnes inscrites ne peut pas être supérieur au nombre maximum de places !");
+        }
+
+        if($formUpdate['nb_users'] < 1 || $formUpdate['nb_max_users'] < 2) {
+            exit("Value Error : Les réservations et le nombre maximum de places doivent être supérieurs à 0 ! 
+            (! Nombre de places maximum => au moins 2 !)");
+        }
+
+        if($formUpdate['date_debut'] > $formUpdate['date_fin']) {
+            exit("Date Error : L'arrivée ne peut survenir avant le départ !");
+        }
+
+        if($formUpdate['a_dep'] === $formUpdate['a_dest']) {
+            exit("Destination Error : Un trajet ne peut pas se faire de la même agence à la même à agence !");
+        }
+
+        $trajetService = new TrajetService($this->connect);
+        return $trajetService->updateTrajet($formUpdate, $trajetID);
     }
 }
 

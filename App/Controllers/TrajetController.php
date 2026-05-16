@@ -29,10 +29,15 @@ class TrajetController {
 
             // Init the agence array
             $agence = [];
-            // Get the Agences List for the form-create
-            if($form === 'form-create') {
+            // Get the Agences List for the form-trajet
+            if($form === 'form-trajet') {
                 $agenceService = new AgenceService($db);
                 $agence = $agenceService->getAgencesList();
+            }
+
+            // read one trajet to make the UPDATE form
+            if(isset($_GET['form-goal']) && $_GET['form-goal'] === 'update' && isset($_GET['trajet_id'])) {
+                $oneTrajet = $trajetService->getOneTrajet($_GET['trajet_id']);
             }
 
             include __DIR__ . '/../../templates/home.php';
@@ -74,6 +79,27 @@ class TrajetController {
             $mw = $trajetMiddleware->deleteTrajetMW($trajetID, $authorID);
 
             // Avoid duplicated sql DELETE attempts on refresh
+            if($mw) {
+                header('Location: index.php?page=home');
+                exit;
+            }
+        }
+    }
+
+    /**
+     * Control the trajet update path
+     */
+    public function ctrlUpdateTrajet(array $formUpdate, string $trajetID, string $authorID) {
+        $config = new Config();
+        $db = $config->getConnection();
+
+        if ($db === null) {
+            exit("Connection Error : Pas d'accès à la base de données");
+        } else {
+            $trajetMiddleware = new TrajetMiddleware($db);
+            $mw = $trajetMiddleware->updateTrajetMW($formUpdate, $trajetID, $authorID);
+
+            // Avoid duplicated sql INSERT on refresh
             if($mw) {
                 header('Location: index.php?page=home');
                 exit;

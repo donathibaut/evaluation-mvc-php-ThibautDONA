@@ -27,6 +27,15 @@ class TrajetService {
     }
 
     /**
+     * Get one trajet from the table
+     * 
+     * @return array data from the table
+     */
+    public function getOneTrajet(string $thisOne) {
+        return $this->trajetModel->readOne($thisOne);
+    }
+
+    /**
      * Send the form array to the create function
      * 
      * @return bool success of the sql request : true/false
@@ -42,6 +51,15 @@ class TrajetService {
      */
     public function deleteTrajet(string $trajetID) {
         return $this->trajetModel->delete($trajetID);
+    }
+
+    /**
+     * Send the trajet ID + the form to the update function
+     * 
+     * @return bool success of the sql request : true/false
+     */
+    public function updateTrajet(array $formUpdate, string $trajetID) {
+        return $this->trajetModel->update($formUpdate, $trajetID);
     }
 }
 
