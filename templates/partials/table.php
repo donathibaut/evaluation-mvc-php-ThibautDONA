@@ -34,7 +34,7 @@
                 <a href="">Voir</a>
                 <?php 
                     // If the connected user => editor of the "trajet" : can modify/delete it
-                    if($_SESSION['ID_USER'] === $t['ID_USER'] || $_SESSION['is_admin'] === 1) : 
+                    if($_SESSION['ID_USER'] === $t['ID_USER'] || isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) : 
                 ?>
                     <?php if($_SESSION['is_admin'] === 0) : ?>
                         <?php if(isset($_GET['form-goal']) && $_GET['form-goal'] === "update" && isset($_GET['trajet_id']) && $_GET['trajet_id'] == $t['ID_TRAJET']) : ?>
