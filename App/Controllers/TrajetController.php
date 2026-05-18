@@ -40,6 +40,13 @@ class TrajetController {
                 $oneTrajet = $trajetService->getOneTrajet($_GET['trajet_id']);
             }
 
+            // -----------------------------------------------------------------------
+                // ADMIN EXTENSION
+                if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
+                    include __DIR__ . '/ControllerExt/AdminControllerExt.php';
+                }
+            // -----------------------------------------------------------------------
+
             include __DIR__ . '/../../templates/home.php';
         }
     }

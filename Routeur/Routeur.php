@@ -2,6 +2,7 @@
 
 namespace Routeur;
 
+use App\Controllers\AgenceController;
 use App\Controllers\TrajetController;
 use App\Controllers\UserController;
 
@@ -21,18 +22,30 @@ class Routeur {
         switch($page) {
             case 'home' :
                 $ctrlTrajet = new TrajetController();
+                $ctrlAgence = new AgenceController();
 
                 //CRUD
                 $crud = $_GET['crud'] ?? null;
 
                 //CREATE
                 if($crud === 'create') {
-                    $ctrlTrajet->ctrlCreateTrajet($_POST);
+
+                    // AGENCE || TRAJET
+                    if(isset($_POST['ville_agence'])) {
+                        $ctrlAgence->ctrlCreateAgence($_POST);
+                    } else {
+                        $ctrlTrajet->ctrlCreateTrajet($_POST);
+                    }
                 }
 
                 //DELETE
                 if($crud === 'delete') {
-                    if(isset($_GET['trajet_id'])) {
+
+                    // AGENCE || TRAJET
+                    if(isset($_GET['agence_id'])) {
+                        $agenceID = $_GET['agence_id'];
+                        $ctrlAgence->ctrlDeleteAgence($agenceID);
+                    } elseif(isset($_GET['trajet_id'])) {    
                         $trajetID = $_GET['trajet_id'];
 
                         if(isset($_GET['author_id'])) {
@@ -42,7 +55,7 @@ class Routeur {
                             exit("ID Error : Ce trajet n'a pas d'auteur");
                         }
                     } else {
-                        exit("ID Error : Ce trajet n'a pas d'identifiant");
+                        exit("ID Error : Pas d'identifiant");
                     }
                 }
 
@@ -50,17 +63,28 @@ class Routeur {
                 if($crud === 'update') {
                     // verify first if the form has been submitted
                     if($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        if(isset($_GET['trajet_id'])) {
-                            $trajetID = $_GET['trajet_id'];
 
-                            if(isset($_GET['author_id'])) {
-                                $authorID = $_GET['author_id'];
-                                $ctrlTrajet->ctrlUpdateTrajet($_POST, $trajetID, $authorID);            
+                        // AGENCE || TRAJET
+                        if(isset($_POST['ville_agence'])) {
+                            if(isset($_GET['agence_id'])) {
+                                $agenceID = $_GET['agence_id'];
+                                $ctrlAgence->ctrlUpdateAgence($_POST, $agenceID);
                             } else {
-                                exit("ID Error : Ce trajet n'a pas d'auteur");
+                                exit("ID Error : Cette agence n'a pas d'identifiant");
                             }
                         } else {
-                            exit("ID Error : Ce trajet n'a pas d'identifiant");
+                            if(isset($_GET['trajet_id'])) {
+                                $trajetID = $_GET['trajet_id'];
+
+                                if(isset($_GET['author_id'])) {
+                                    $authorID = $_GET['author_id'];
+                                    $ctrlTrajet->ctrlUpdateTrajet($_POST, $trajetID, $authorID);            
+                                } else {
+                                    exit("ID Error : Ce trajet n'a pas d'auteur");
+                                }
+                            } else {
+                                exit("ID Error : Ce trajet n'a pas d'identifiant");
+                            }
                         }
                     }
                 }
@@ -71,8 +95,9 @@ class Routeur {
                  * @var string|null $form
                  */
                 $form = $_GET['form'] ?? null;
-
+                
                 // Display trajet data and, if necessary, the form-trajet
+                // Render the main Home view
                 $ctrlTrajet->linkDataView($form);
 
                 break;
