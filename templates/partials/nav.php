@@ -8,6 +8,8 @@
             <li><a class="navAdminBtn" href="index.php?page=home">Utilisateurs</a></li>
             <li><a class="navAdminBtn" href="">Agences</a></li>
             <li><a class="navAdminBtn" href="">Trajets</a></li>
+
+            <li><a class="navBtn agenceCreateBtn" href="index.php?page=home&form=form-agence&form-goal=create">Créer une Agence</a></li>
         <?php 
             //NON-ADMIN
             else: 

@@ -60,7 +60,7 @@ class TrajetMiddleware {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function deleteTrajetMW(string $trajetID, string $authorID) {
+    public function deleteTrajetMW(int $trajetID, int $authorID) {
         if($_SESSION['ID_USER'] != $authorID && $_SESSION['is_admin'] === 0) {
             exit("Author Error : Vous n'êtes pas l'auteur de ce trajet !");
         }
@@ -79,7 +79,7 @@ class TrajetMiddleware {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function updateTrajetMW(array $formUpdate, string $trajetID, string $authorID) {
+    public function updateTrajetMW(array $formUpdate, int $trajetID, int $authorID) {
         if($_SESSION['ID_USER'] != $authorID && $_SESSION['is_admin'] === 0) {
             exit("Author Error : Vous n'êtes pas l'auteur de ce trajet !");
         }

@@ -27,7 +27,9 @@ class UserModel {
      * @return array read data from the database
      */
     public function read(){
-        $query = "SELECT ID_USER, nom_user, prenom_user, tel, mail, password, is_admin FROM ".$this->table;
+        $query = "SELECT ID_USER, nom_user, prenom_user, 
+        tel, mail FROM "
+        .$this->table;
         $data = $this->connect->prepare($query);
         $data->execute();
         return $data->fetchAll(PDO::FETCH_ASSOC);
@@ -40,13 +42,13 @@ class UserModel {
      * @return array read the corresponding user
      */
     public function findOne($mail) {
-        $query = "SELECT ID_USER, nom_user, prenom_user, tel, mail, password, is_admin FROM "
+        $query = "SELECT ID_USER, nom_user, prenom_user, password, is_admin FROM "
         .$this->table
         ." WHERE mail = :mail";
         $data = $this->connect->prepare($query);
-        // bindParam -> avoid SQL injections 
-        $data->bindParam(':mail', $mail);
-        $data->execute();
+        $data->execute([
+            ':mail' => $mail
+        ]);
         return $data->fetch(PDO::FETCH_ASSOC);
     }
 }

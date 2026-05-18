@@ -31,8 +31,6 @@ class UserController {
                     $_SESSION['is_admin'] = $user['is_admin'];
                     $_SESSION['nom_user'] = $user['nom_user'];
                     $_SESSION['prenom_user'] = $user['prenom_user'];
-                    $_SESSION['tel'] = $user['tel'];
-                    $_SESSION['mail'] = $user['mail'];
 
                     // Login succeeded
                     $_SESSION['successMess'] = "Vous êtes connecté !";
@@ -63,6 +61,23 @@ class UserController {
 
         header('Location: index.php?page=home');
         exit;
+    }
+
+    /**
+     * Manage the relation between the webpage and the data from the database
+     * 
+     * + include -> webpage
+     */
+    public function linkDataView() {
+        $config = new Config();
+        $db = $config->getConnection();
+
+        if ($db === null) {
+            exit("Connection Error : Pas d'accès à la base de données");
+        } else {
+            $userService = new UserService($db);
+            return $userService->getUsersList();
+        }
     }
 }
 

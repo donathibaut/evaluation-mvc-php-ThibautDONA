@@ -49,7 +49,7 @@ class TrajetModel {
      * 
      * @return array read data from the database
      */
-    public function readOne(string $thisOne){
+    public function readOne(int $thisOne){
         $query = "SELECT t.ID_TRAJET, t.date_debut, t.date_fin, t.nb_users, t.nb_max_users, 
             t.ID_DEPART, t.ID_DESTINATION,
             a_dest.ville_agence AS ville_destination, 
@@ -99,7 +99,7 @@ class TrajetModel {
      * 
      * @return bool delete a trajet
      */
-    public function delete(string $trajetID){
+    public function delete(int $trajetID){
         $query = "DELETE FROM trajets WHERE ID_TRAJET = :id";
 
         $delete = $this->connect->prepare($query);
@@ -112,7 +112,7 @@ class TrajetModel {
      * 
      * @return bool update a trajet
      */
-    public function update(array $formUpdate, string $trajetID){
+    public function update(array $formUpdate, int $trajetID){
         $query = "UPDATE trajets 
         SET nb_users = :nb_users, 
         nb_max_users = :nb_max_users, 

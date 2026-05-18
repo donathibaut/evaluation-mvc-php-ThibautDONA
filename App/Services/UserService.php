@@ -32,6 +32,15 @@ class UserService {
             return false;
         }
     }
+
+    /**
+     * Get data from the users table
+     * 
+     * @return array data from the table
+     */
+    public function getUsersList() {
+        return $this->userModel->read();
+    }
 }
 
 ?>

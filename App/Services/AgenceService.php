@@ -25,6 +25,42 @@ class AgenceService {
     public function getAgencesList() {
         return $this->agenceModel->read();
     }
+
+    /**
+     * Get one agence from the table
+     * 
+     * @return array data from the table
+     */
+    public function getOneAgence(int $thisOne) {
+        return $this->agenceModel->readOne($thisOne);
+    }
+
+    /**
+     * Send the form array to the create function
+     * 
+     * @return bool success of the sql request : true/false
+     */
+    public function createAgence(string $securedInput) {
+        return $this->agenceModel->create($securedInput);
+    }
+
+    /**
+     * Send the agence ID to the delete function
+     * 
+     * @return bool success of the sql request : true/false
+     */
+    public function deleteAgence(int $agenceID) {
+        return $this->agenceModel->delete($agenceID);
+    }
+
+    /**
+     * Send the agence ID + the form to the update function
+     * 
+     * @return bool success of the sql request : true/false
+     */
+    public function updateAgence(string $securedInput, int $agenceID) {
+        return $this->agenceModel->update($securedInput, $agenceID);
+    }
 }
 
 ?>

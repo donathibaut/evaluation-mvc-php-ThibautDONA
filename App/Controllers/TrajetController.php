@@ -40,6 +40,13 @@ class TrajetController {
                 $oneTrajet = $trajetService->getOneTrajet($_GET['trajet_id']);
             }
 
+            // -----------------------------------------------------------------------
+                // ADMIN EXTENSION
+                if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
+                    include __DIR__ . '/ControllerExt/AdminControllerExt.php';
+                }
+            // -----------------------------------------------------------------------
+
             include __DIR__ . '/../../templates/home.php';
         }
     }
@@ -68,7 +75,7 @@ class TrajetController {
     /**
      * Control the trajet deletion path
      */
-    public function ctrlDeleteTrajet(string $trajetID, string $authorID) {
+    public function ctrlDeleteTrajet(int $trajetID, int $authorID) {
         $config = new Config();
         $db = $config->getConnection();
 
@@ -89,7 +96,7 @@ class TrajetController {
     /**
      * Control the trajet update path
      */
-    public function ctrlUpdateTrajet(array $formUpdate, string $trajetID, string $authorID) {
+    public function ctrlUpdateTrajet(array $formUpdate, int $trajetID, int $authorID) {
         $config = new Config();
         $db = $config->getConnection();
 

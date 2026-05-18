@@ -7,63 +7,63 @@
             autocomplete="off"
         >
 
-        <!-- Passengers -->
-        <label for="nb_users">Nombre de passagers : </label>
-        <input name="nb_users" id="nb_users" type="number" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_users'] ?>"<?php endif; ?> required>
-        <label for="nb_max_users">/</label>
-        <input name="nb_max_users" id="nb_max_users" type="number" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_max_users'] ?>"<?php endif; ?> required>
+            <!-- Passengers -->
+            <label for="nb_users">Nombre de passagers : </label>
+            <input name="nb_users" id="nb_users" type="number" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_users'] ?>"<?php endif; ?> required>
+            <label for="nb_max_users">/</label>
+            <input name="nb_max_users" id="nb_max_users" type="number" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_max_users'] ?>"<?php endif; ?> required>
 
-        <!-- Start -->
-        <label for="date_debut">Date de départ</label>
-        <input name="date_debut" id="date_debut" type="datetime-local" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['date_debut'] ?>"<?php endif; ?> required>
-        <label for="a_dep">Agence de départ :</label>
-        <select name="a_dep" id="a_dep" required>
-            <?php 
-            // $agence from AgenceController : $agence = $agenceService->getAgencesList();
-            if(!empty($agence)) : 
-            ?>
-                <option value="">--Veuillez choisir une agence--</option>
+            <!-- Start -->
+            <label for="date_debut">Date de départ</label>
+            <input name="date_debut" id="date_debut" type="datetime-local" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['date_debut'] ?>"<?php endif; ?> required>
+            <label for="a_dep">Agence de départ :</label>
+            <select name="a_dep" id="a_dep" required>
                 <?php 
-                // Load every "agence" in the list
-                foreach($agence as $a) : 
+                // $agence from AgenceController : $agence = $agenceService->getAgencesList();
+                if(!empty($agence)) : 
                 ?>
-                    <option value="<?php echo $a['ID_AGENCE']; ?>" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet) && $oneTrajet['ID_DEPART'] === $a['ID_AGENCE']) : ?>selected<?php endif; ?>>
-                    <?php echo $a['ville_agence']; ?>
-                    </option>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </select>
+                    <option value="">--Veuillez choisir une agence--</option>
+                    <?php 
+                    // Load every "agence" in the list
+                    foreach($agence as $a) : 
+                    ?>
+                        <option value="<?php echo $a['ID_AGENCE']; ?>" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet) && $oneTrajet['ID_DEPART'] === $a['ID_AGENCE']) : ?>selected<?php endif; ?>>
+                        <?php echo $a['ville_agence']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </select>
 
-        <!-- End -->
-        <label for="date_fin">Date d'arrivée</label>
-        <input name="date_fin" id="date_fin" type="datetime-local" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['date_fin'] ?>"<?php endif; ?> required>
-        <label for="a_dest">Agence d'arrivée :</label>
-        <select name="a_dest" id="a_dest" required>
-            <?php 
-            // $agence from AgenceController : $agence = $agenceService->getAgencesList();
-            if(!empty($agence)) : 
-            ?>
-                <option value="">--Veuillez choisir une agence--</option>
+            <!-- End -->
+            <label for="date_fin">Date d'arrivée</label>
+            <input name="date_fin" id="date_fin" type="datetime-local" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['date_fin'] ?>"<?php endif; ?> required>
+            <label for="a_dest">Agence d'arrivée :</label>
+            <select name="a_dest" id="a_dest" required>
                 <?php 
-                foreach($agence as $a) : 
+                // $agence from AgenceController : $agence = $agenceService->getAgencesList();
+                if(!empty($agence)) : 
                 ?>
-                    <option value="<?php echo $a['ID_AGENCE']; ?>" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet) && $oneTrajet['ID_DESTINATION'] === $a['ID_AGENCE']) : ?>selected<?php endif;?> >
-                    <?php echo $a['ville_agence']; ?>
-                    </option>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </select>
+                    <option value="">--Veuillez choisir une agence--</option>
+                    <?php 
+                    foreach($agence as $a) : 
+                    ?>
+                        <option value="<?php echo $a['ID_AGENCE']; ?>" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet) && $oneTrajet['ID_DESTINATION'] === $a['ID_AGENCE']) : ?>selected<?php endif;?> >
+                        <?php echo $a['ville_agence']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </select>
 
-        <!-- Adapted to the context -->
-        <button type="submit">
-            <?php if($_GET['form-goal'] === "create") : ?>
-                Créer le trajet
-            <?php elseif($_GET['form-goal'] === "update") : ?>
-                Mettre à jour
-            <?php endif; ?>
-        </button>
-        <a href="index.php?page=home">Annuler</a>
-    </form>
+            <!-- Adapted to the context -->
+            <button type="submit">
+                <?php if($_GET['form-goal'] === "create") : ?>
+                    Créer le trajet
+                <?php elseif($_GET['form-goal'] === "update") : ?>
+                    Mettre à jour
+                <?php endif; ?>
+            </button>
+            <a href="index.php?page=home">Annuler</a>
+        </form>
     <?php endif; ?>
 
 <?php else : ?>
