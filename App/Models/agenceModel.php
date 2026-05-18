@@ -39,7 +39,7 @@ class AgenceModel {
      * 
      * @return array read data from the database
      */
-    public function readOne(string $thisOne){
+    public function readOne(int $thisOne){
         $query = "SELECT ville_agence FROM ".
         $this->table.
         " WHERE ID_AGENCE = :agence_id";
@@ -72,7 +72,7 @@ class AgenceModel {
      * 
      * @return bool delete a agence
      */
-    public function delete(string $agenceID){
+    public function delete(int $agenceID){
         $query = "DELETE FROM agences WHERE ID_AGENCE = :id";
 
         $delete = $this->connect->prepare($query);
@@ -85,7 +85,7 @@ class AgenceModel {
      * 
      * @return bool update a agence
      */
-    public function update(string $securedInput, string $agenceID){
+    public function update(string $securedInput, int $agenceID){
         $query = "UPDATE agences 
         SET ville_agence = :ville_agence
         WHERE ID_AGENCE = :id";

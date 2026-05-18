@@ -44,7 +44,7 @@ class AgenceMiddleware {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function deleteAgenceMW(string $agenceID) {
+    public function deleteAgenceMW(int $agenceID) {
         if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== 1) {
             exit("Connection Error : Vous n'êtes pas autorisé à effectuer cette action !");
         }
@@ -59,7 +59,7 @@ class AgenceMiddleware {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function updateAgenceMW(array $formUpdate, string $agenceID) {
+    public function updateAgenceMW(array $formUpdate, int $agenceID) {
         if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== 1) {
             exit("Connection Error : Vous n'êtes pas autorisé à effectuer cette action !");
         }

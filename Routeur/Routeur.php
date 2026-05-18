@@ -43,13 +43,13 @@ class Routeur {
 
                     // AGENCE || TRAJET
                     if(isset($_GET['agence_id'])) {
-                        $agenceID = $_GET['agence_id'];
+                        $agenceID = (int)$_GET['agence_id'];
                         $ctrlAgence->ctrlDeleteAgence($agenceID);
                     } elseif(isset($_GET['trajet_id'])) {    
-                        $trajetID = $_GET['trajet_id'];
+                        $trajetID = (int)$_GET['trajet_id'];
 
                         if(isset($_GET['author_id'])) {
-                            $authorID = $_GET['author_id'];
+                            $authorID = (int)$_GET['author_id'];
                             $ctrlTrajet->ctrlDeleteTrajet($trajetID, $authorID);            
                         } else {
                             exit("ID Error : Ce trajet n'a pas d'auteur");
@@ -67,17 +67,17 @@ class Routeur {
                         // AGENCE || TRAJET
                         if(isset($_POST['ville_agence'])) {
                             if(isset($_GET['agence_id'])) {
-                                $agenceID = $_GET['agence_id'];
+                                $agenceID = (int)$_GET['agence_id'];
                                 $ctrlAgence->ctrlUpdateAgence($_POST, $agenceID);
                             } else {
                                 exit("ID Error : Cette agence n'a pas d'identifiant");
                             }
                         } else {
                             if(isset($_GET['trajet_id'])) {
-                                $trajetID = $_GET['trajet_id'];
+                                $trajetID = (int)$_GET['trajet_id'];
 
                                 if(isset($_GET['author_id'])) {
-                                    $authorID = $_GET['author_id'];
+                                    $authorID = (int)$_GET['author_id'];
                                     $ctrlTrajet->ctrlUpdateTrajet($_POST, $trajetID, $authorID);            
                                 } else {
                                     exit("ID Error : Ce trajet n'a pas d'auteur");

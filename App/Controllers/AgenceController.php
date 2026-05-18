@@ -71,7 +71,7 @@ class AgenceController {
     /**
      * Control the agence deletion path
      */
-    public function ctrlDeleteAgence(string $agenceID) {
+    public function ctrlDeleteAgence(int $agenceID) {
         $config = new Config();
         $db = $config->getConnection();
 
@@ -92,7 +92,7 @@ class AgenceController {
     /**
      * Control the agence update path
      */
-    public function ctrlUpdateAgence(array $formUpdate, string $agenceID) {
+    public function ctrlUpdateAgence(array $formUpdate, int $agenceID) {
         $config = new Config();
         $db = $config->getConnection();
 

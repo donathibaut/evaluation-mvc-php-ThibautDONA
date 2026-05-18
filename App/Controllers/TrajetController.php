@@ -75,7 +75,7 @@ class TrajetController {
     /**
      * Control the trajet deletion path
      */
-    public function ctrlDeleteTrajet(string $trajetID, string $authorID) {
+    public function ctrlDeleteTrajet(int $trajetID, int $authorID) {
         $config = new Config();
         $db = $config->getConnection();
 
@@ -96,7 +96,7 @@ class TrajetController {
     /**
      * Control the trajet update path
      */
-    public function ctrlUpdateTrajet(array $formUpdate, string $trajetID, string $authorID) {
+    public function ctrlUpdateTrajet(array $formUpdate, int $trajetID, int $authorID) {
         $config = new Config();
         $db = $config->getConnection();
 

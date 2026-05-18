@@ -31,7 +31,7 @@ class AgenceService {
      * 
      * @return array data from the table
      */
-    public function getOneAgence(string $thisOne) {
+    public function getOneAgence(int $thisOne) {
         return $this->agenceModel->readOne($thisOne);
     }
 
@@ -49,7 +49,7 @@ class AgenceService {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function deleteAgence(string $agenceID) {
+    public function deleteAgence(int $agenceID) {
         return $this->agenceModel->delete($agenceID);
     }
 
@@ -58,7 +58,7 @@ class AgenceService {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function updateAgence(string $securedInput, string $agenceID) {
+    public function updateAgence(string $securedInput, int $agenceID) {
         return $this->agenceModel->update($securedInput, $agenceID);
     }
 }

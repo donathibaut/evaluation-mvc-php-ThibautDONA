@@ -31,7 +31,7 @@ class TrajetService {
      * 
      * @return array data from the table
      */
-    public function getOneTrajet(string $thisOne) {
+    public function getOneTrajet(int $thisOne) {
         return $this->trajetModel->readOne($thisOne);
     }
 
@@ -49,7 +49,7 @@ class TrajetService {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function deleteTrajet(string $trajetID) {
+    public function deleteTrajet(int $trajetID) {
         return $this->trajetModel->delete($trajetID);
     }
 
@@ -58,7 +58,7 @@ class TrajetService {
      * 
      * @return bool success of the sql request : true/false
      */
-    public function updateTrajet(array $formUpdate, string $trajetID) {
+    public function updateTrajet(array $formUpdate, int $trajetID) {
         return $this->trajetModel->update($formUpdate, $trajetID);
     }
 }

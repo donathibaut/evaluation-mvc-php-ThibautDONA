@@ -3,7 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accueil</title>
+    <title>
+      <?php 
+        if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) : 
+      ?>
+        Tableau de bord
+      <?php else : ?>
+        Accueil
+      <?php endif; ?>
+    </title>
   </head>
   <body>
     <!-- <header> depends on the user auth (Not-Connected/Connected/Connected as an Admin) -->
