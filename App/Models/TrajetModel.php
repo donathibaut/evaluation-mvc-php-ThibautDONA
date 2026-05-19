@@ -32,7 +32,9 @@ class TrajetModel {
             a_dep.ville_agence AS ville_depart, 
             u.ID_USER,
             u.nom_user,
-            u.prenom_user FROM ".
+            u.prenom_user,
+            u.tel,
+            u.mail FROM ".
         $this->table.
         " t LEFT JOIN users u ON t.ID_USER = u.ID_USER
         LEFT JOIN agences a_dep ON t.ID_DEPART = a_dep.ID_AGENCE

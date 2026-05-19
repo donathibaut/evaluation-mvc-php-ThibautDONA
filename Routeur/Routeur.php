@@ -14,7 +14,6 @@ class Routeur {
      * Manage the routes by cases
      */
     public function run() {
-        session_start();
 
         //PAGES
         $page = $_GET['page'] ?? 'home';

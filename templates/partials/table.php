@@ -31,7 +31,10 @@
                     <!-- Interactions with the table -->
                     <?php if(isset($_SESSION['ID_USER'])) : ?>
                         <td class="cell">
-                        <a href="">Voir</a>
+                        <?php 
+                            //------------------ MODAL ("Voir" btn) -------------------------
+                            include __DIR__ . "/modals/table-modal.php" 
+                        ?>
                         <?php 
                             // If the connected user => editor of the "trajet" : can modify/delete it
                             if($_SESSION['ID_USER'] === $t['ID_USER'] || isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) : 
