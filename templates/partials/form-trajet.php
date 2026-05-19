@@ -7,6 +7,18 @@
             autocomplete="off"
         >
 
+            <?php if($_GET['form-goal'] === "create" && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 0) : ?>
+                <!-- ABOUT THE USER -->
+                <label for="nom_user">Nom : </label>
+                <input name="nom_user" id="nom_user" type="text" value="<?php echo $_SESSION['nom_user'] ?>" disabled>
+                <label for="prenom_user">Prénom : </label>
+                <input name="prenom_user" id="prenom_user" type="text" value="<?php echo $_SESSION['prenom_user'] ?>" disabled>
+                <label for="mail_user">Adresse E-mail : </label>
+                <input name="mail_user" id="mail_user" type="text" value="<?php echo $_SESSION['mail'] ?>" disabled>
+                <label for="tel_user">Téléphone : </label>
+                <input name="tel_user" id="tel_user" type="text" value="<?php echo $_SESSION['tel'] ?>" disabled>
+            <?php endif; ?>
+
             <!-- Passengers -->
             <label for="nb_users">Nombre de passagers : </label>
             <input name="nb_users" id="nb_users" type="number" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_users'] ?>"<?php endif; ?> required>

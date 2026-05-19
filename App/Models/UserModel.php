@@ -42,7 +42,7 @@ class UserModel {
      * @return array read the corresponding user
      */
     public function findOne($mail) {
-        $query = "SELECT ID_USER, nom_user, prenom_user, password, is_admin FROM "
+        $query = "SELECT ID_USER, nom_user, prenom_user, tel, mail, password, is_admin FROM "
         .$this->table
         ." WHERE mail = :mail";
         $data = $this->connect->prepare($query);
