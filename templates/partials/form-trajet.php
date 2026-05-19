@@ -7,6 +7,18 @@
             autocomplete="off"
         >
 
+            <?php if($_GET['form-goal'] === "create" && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 0) : ?>
+                <!-- ABOUT THE USER -->
+                <label for="nb_users">Nom : </label>
+                <input name="nb_users" id="nb_users" type="number" <?php if(isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_users'] ?>"<?php endif; ?> required>
+                <label for="nb_users">Prénom : </label>
+                <input name="nb_users" id="nb_users" type="number" <?php if(isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_users'] ?>"<?php endif; ?> required>
+                <label for="nb_users">Adresse E-mail : </label>
+                <input name="nb_users" id="nb_users" type="number" <?php if(isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_users'] ?>"<?php endif; ?> required>
+                <label for="nb_users">Téléphone : </label>
+                <input name="nb_users" id="nb_users" type="number" <?php if(isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_users'] ?>"<?php endif; ?> required>
+            <?php endif; ?>
+
             <!-- Passengers -->
             <label for="nb_users">Nombre de passagers : </label>
             <input name="nb_users" id="nb_users" type="number" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_users'] ?>"<?php endif; ?> required>
