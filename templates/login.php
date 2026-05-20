@@ -1,6 +1,5 @@
-<header>
-  <h1 class="logo"><a href="index.php?page=home">Touche pas au klaxon</a></h1>
-</header>
+<!-- HEADER -->
+<?php include __DIR__ . "/partials/header.php" ?>
 <main>
     <h2>Formulaire de connexion</h2>
 
@@ -17,9 +16,8 @@
         <label for="password">Mot de Passe : </label>
         <input name="password" id="password" type="password" required>
 
-        <button type="submit">Me Connecter</button>
+        <button class="btn btn-primary" type="submit">Me Connecter</button>
     </form>
 </main>
-<footer>
-  <p class="copyright">© 2024 - CENEF - MVC PHP</p>
-</footer>
+<!-- FOOTER -->
+<?php include __DIR__ . "/partials/footer.php" ?>

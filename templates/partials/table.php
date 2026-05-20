@@ -44,14 +44,12 @@
                                     // Is the corresponding form open ?
                                     if(isset($_GET['form-goal']) && $_GET['form-goal'] === "update" && isset($_GET['trajet_id']) && $_GET['trajet_id'] == $t['ID_TRAJET']) : 
                                 ?>
-                                    <a href="index.php?page=home">Annuler</a>
+                                    <a class="tableBtn" href="index.php?page=home"><i class="bi bi-x-square"></i></a>
                                 <?php else: ?>
-                                    <a href="index.php?page=home&form=form-trajet&form-goal=update&trajet_id=<?php echo $t['ID_TRAJET'] ?>">Modifier</a>
+                                    <a class="tableBtn" href="index.php?page=home&form=form-trajet&form-goal=update&trajet_id=<?php echo $t['ID_TRAJET'] ?>"><i class="bi bi-pencil-square"></i></a>
                                 <?php endif; ?>
                             <?php endif; ?>
-                            <a href="index.php?page=home&crud=delete&trajet_id=<?php echo $t['ID_TRAJET']; ?>&author_id=<?php echo $t['ID_USER']; ?>">
-                                Supprimer
-                            </a>
+                            <a class="tableBtn" href="index.php?page=home&crud=delete&trajet_id=<?php echo $t['ID_TRAJET']; ?>&author_id=<?php echo $t['ID_USER']; ?>"><i class="bi bi-trash text-danger"></i></a>
                         <?php endif; ?>
                         </td>
                     <?php endif; ?>

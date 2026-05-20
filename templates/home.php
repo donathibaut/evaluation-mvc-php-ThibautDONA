@@ -1,10 +1,5 @@
-<!-- <header> depends on the user auth (Not-Connected/Connected/Connected as an Admin) -->
-<header>
-  <h1 class="logo"><a href="index.php?page=home">Touche pas au klaxon</a></h1>
-
-  <!-- NAV -->
-  <?php include __DIR__ . '/partials/nav.php'; ?> 
-</header>
+<!-- HEADER -->
+<?php include __DIR__ . "/partials/header.php" ?>
 <main>
   <!-- MESSAGE : Login / Logout -->
   <?php include __DIR__ . '/partials/log-message.php'; ?>
@@ -34,6 +29,5 @@
   <?php endif; ?>
 
 </main>
-<footer>
-  <p class="copyright">© 2024 - CENEF - MVC PHP</p>
-</footer>
+<!-- FOOTER -->
+<?php include __DIR__ . "/partials/footer.php" ?>

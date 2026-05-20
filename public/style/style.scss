@@ -1,13 +1,59 @@
+// Init SCSS
+* {
+  font-size: 16px;
+}
+
 //--------------------------------------------------------------
 //                          BOOTSTRAP
 //--------------------------------------------------------------
 
 // Variable overrides first
-$primary: #900;
+$primary: #0074c7;
+$secondary: #00497c;
+$success: #82b864;
+$danger: #cd2c2e;
+$light: #f1f8fc;
+$dark: #384050;
+
 $enable-shadows: true;
-$prefix: "mo-";
 
 // Then import Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
+// And Bootstrap Icons
+$bootstrap-icons-font-dir: "../../node_modules/bootstrap-icons/font/fonts";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+// Bootstrap changes :
+.btn,
+.modal-content {
+  border-radius: 50px 5px / 5px 50px;
+}
+
 //--------------------------------------------------------------
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.logo__link {
+  text-decoration: none;
+}
+
+.modal-body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tableBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
