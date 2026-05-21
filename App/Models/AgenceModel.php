@@ -73,11 +73,19 @@ class AgenceModel {
      * @return bool delete a agence
      */
     public function delete(int $agenceID){
+        try {
         $query = "DELETE FROM agences WHERE ID_AGENCE = :id";
 
         $delete = $this->connect->prepare($query);
 
         return $delete->execute([':id' => $agenceID]);
+
+        // Avoid SQL ERROR MESSAGE => clearer message
+        } catch(\PDOException $e) {
+            if($e->getCode() === '23000') {
+                exit("Erreur SQL : Un trajet utilise déjà cette agence !");
+            }
+        }
     }
 
     /**

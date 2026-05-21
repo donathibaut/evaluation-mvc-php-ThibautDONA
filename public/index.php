@@ -14,6 +14,11 @@
 
     $routeur = new Routeur();
 
+    // HTTP Ticket OPEN
+    // header() WORKS
+    if (isset($_GET['crud'])) {
+        $routeur->run(); 
+    }
 ?>
 <!doctype html>
 <html lang="fr">
@@ -37,7 +42,14 @@
   </head>
   <body>
 
-    <?php $routeur->run(); ?>
+    <?php 
+        // HTTP Ticket CLOSE
+        // header() DOES NOT WORK
+        // Avoid header("Location: ...") LOOPS
+        if (!isset($_GET['crud'])) {
+            $routeur->run(); 
+        } 
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="crossorigin"></script>
   </body>

@@ -1,7 +1,14 @@
 <?php if(isset($_SESSION['successMess'])) : ?>
-    <p><?php echo $_SESSION['successMess'] ?></p>
+
+    <!-- SUCCESS MESSAGE -->
+    <p class="successMsg"><?php echo $_SESSION['successMess'] ?></p>
+
     <?php unset($_SESSION['successMess']) ?>
-    <?php if(!isset($_SESSION['ID_USER'])) : ?>
+
+    <?php
+        // Allow to show the message before destroying $_SESSION
+        if(!isset($_SESSION['ID_USER'])) : 
+    ?>
         <?php         
         /** Delete the session cookie */
         session_destroy(); 

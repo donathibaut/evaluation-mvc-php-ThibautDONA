@@ -1,14 +1,16 @@
-<?php if(isset($_SESSION['ID_USER'])) : ?>
+<?php if(isset($form) && $form === 'form-trajet' && isset($_GET['form-goal'])) : ?>
+    <form 
+        action="index.php?page=home&<?php if($_GET['form-goal'] === "create") : ?>crud=create<?php elseif($_GET['form-goal'] === "update") : ?>crud=update&trajet_id=<?php echo $_GET['trajet_id'] ?>&author_id=<?php if(isset($oneTrajet)){ echo $oneTrajet['ID_USER'];} ?><?php endif; ?>" 
+        method="post" 
+        autocomplete="off"
+        class="formTrajet border border-2 border-dark"
+    >
 
-    <?php if(isset($form) && $form === 'form-trajet' && isset($_GET['form-goal'])) : ?>
-        <form 
-            action="index.php?page=home&<?php if($_GET['form-goal'] === "create") : ?>crud=create<?php elseif($_GET['form-goal'] === "update") : ?>crud=update&trajet_id=<?php echo $_GET['trajet_id'] ?>&author_id=<?php if(isset($oneTrajet)){ echo $oneTrajet['ID_USER'];} ?><?php endif; ?>" 
-            method="post" 
-            autocomplete="off"
-        >
+        <?php if($_GET['form-goal'] === "create" && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 0) : ?>
+            <!-- ABOUT THE USER -->
+            <fieldset class="oneUserField border border-2 border-dark">
+                <legend>Vos informations</legend>
 
-            <?php if($_GET['form-goal'] === "create" && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 0) : ?>
-                <!-- ABOUT THE USER -->
                 <label for="nom_user">Nom : </label>
                 <input name="nom_user" id="nom_user" type="text" value="<?php echo $_SESSION['nom_user'] ?>" disabled>
                 <label for="prenom_user">Prénom : </label>
@@ -17,12 +19,16 @@
                 <input name="mail_user" id="mail_user" type="text" value="<?php echo $_SESSION['mail'] ?>" disabled>
                 <label for="tel_user">Téléphone : </label>
                 <input name="tel_user" id="tel_user" type="text" value="<?php echo $_SESSION['tel'] ?>" disabled>
-            <?php endif; ?>
+            </fieldset>
+        <?php endif; ?>
+
+        <fieldset class="areaField border border-2 border-dark">
+            <legend> Veuillez remplir les champs</legend>
 
             <!-- Passengers -->
             <label for="nb_users">Nombre de passagers : </label>
             <input name="nb_users" id="nb_users" type="number" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_users'] ?>"<?php endif; ?> required>
-            <label for="nb_max_users">/</label>
+            <label for="nb_max_users">Nombre total de places : </label>
             <input name="nb_max_users" id="nb_max_users" type="number" <?php if($_GET['form-goal'] === "update" && isset($oneTrajet)) : ?>value="<?php echo $oneTrajet['nb_max_users'] ?>"<?php endif; ?> required>
 
             <!-- Start -->
@@ -65,25 +71,18 @@
                     <?php endforeach; ?>
                 <?php endif; ?>
             </select>
+        </fieldset>
 
-            <!-- Adapted to the context -->
-            <button type="submit">
+        <!-- Adapted to the context -->
+        <div class="btnContainer">
+            <button class="btn btn-success" type="submit">
                 <?php if($_GET['form-goal'] === "create") : ?>
                     Créer le trajet
                 <?php elseif($_GET['form-goal'] === "update") : ?>
                     Mettre à jour
                 <?php endif; ?>
             </button>
-            <a href="index.php?page=home">Annuler</a>
-        </form>
-    <?php endif; ?>
-
-<?php else : ?>
-
-    <!-- If not connected -->
-    <p>
-        Pour obtenir plus d'informations sur un trajet, veuillez vous
-        connecter
-    </p>
-    
+            <a class="btn btn-danger" href="index.php?page=home">Annuler</a>
+        </div>
+    </form>
 <?php endif; ?>

@@ -1,6 +1,18 @@
+<?php if(!isset($_SESSION['ID_USER'])) : ?>
+
+    <!-- If not connected -->
+    <p class="tableTitle">
+        Pour obtenir plus d'informations sur un trajet, veuillez vous
+        connecter
+    </p>
+    
+<?php else : ?>
+    <h2 class="tableTitle">Trajets proposés</h2>
+<?php endif; ?>
+
 <!-- <table> depends on the user auth -->
-<table class="<?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) { echo "trajetsTable"; } ?>">
-    <thead>
+<table class="trajetsTable table table-striped table-bordered" id="trajetsTable">
+    <thead class="table-dark">
         <tr>
             <th scope="col">Départ</th>
             <th scope="col">Date</th>
@@ -9,6 +21,9 @@
             <th scope="col">Date</th>
             <th scope="col">Heure</th>
             <th scope="col">Places</th>
+            <?php if(isset($_SESSION['ID_USER'])) : ?>
+                <th scope="col"></th>
+            <?php endif; ?>
         </tr>
     </thead>
     <tbody>
@@ -44,14 +59,12 @@
                                     // Is the corresponding form open ?
                                     if(isset($_GET['form-goal']) && $_GET['form-goal'] === "update" && isset($_GET['trajet_id']) && $_GET['trajet_id'] == $t['ID_TRAJET']) : 
                                 ?>
-                                    <a href="index.php?page=home">Annuler</a>
+                                    <a class="tableBtn" href="index.php?page=home"><i class="bi bi-x-square"></i></a>
                                 <?php else: ?>
-                                    <a href="index.php?page=home&form=form-trajet&form-goal=update&trajet_id=<?php echo $t['ID_TRAJET'] ?>">Modifier</a>
+                                    <a class="tableBtn" href="index.php?page=home&form=form-trajet&form-goal=update&trajet_id=<?php echo $t['ID_TRAJET'] ?>"><i class="bi bi-pencil-square"></i></a>
                                 <?php endif; ?>
                             <?php endif; ?>
-                            <a href="index.php?page=home&crud=delete&trajet_id=<?php echo $t['ID_TRAJET']; ?>&author_id=<?php echo $t['ID_USER']; ?>">
-                                Supprimer
-                            </a>
+                            <a class="tableBtn" href="index.php?page=home&crud=delete&trajet_id=<?php echo $t['ID_TRAJET']; ?>&author_id=<?php echo $t['ID_USER']; ?>"><i class="bi bi-trash text-danger"></i></a>
                         <?php endif; ?>
                         </td>
                     <?php endif; ?>

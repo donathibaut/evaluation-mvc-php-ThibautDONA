@@ -17,14 +17,14 @@
             >
 
             <!-- Adapted to the context -->
-            <button type="submit">
+            <button class="btn btn-success" type="submit">
                 <?php if($_GET['form-goal'] === "create") : ?>
                     Créer une agence
                 <?php elseif($_GET['form-goal'] === "update") : ?>
                     Mettre à jour
                 <?php endif; ?>
             </button>
-            <a href="index.php?page=home">Annuler</a>
+            <a class="btn btn-danger" href="index.php?page=home">Annuler</a>
         </form>
     <?php endif; ?>
 
