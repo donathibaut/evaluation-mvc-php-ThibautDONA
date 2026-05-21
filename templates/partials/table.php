@@ -1,6 +1,18 @@
+<?php if(!isset($_SESSION['ID_USER'])) : ?>
+
+    <!-- If not connected -->
+    <p class="tableTitle">
+        Pour obtenir plus d'informations sur un trajet, veuillez vous
+        connecter
+    </p>
+    
+<?php else : ?>
+    <h2 class="tableTitle">Trajets proposés</h2>
+<?php endif; ?>
+
 <!-- <table> depends on the user auth -->
-<table class="<?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) { echo "trajetsTable"; } ?>">
-    <thead>
+<table class="trajetsTable table table-striped table-bordered" id="trajetsTable">
+    <thead class="table-dark">
         <tr>
             <th scope="col">Départ</th>
             <th scope="col">Date</th>
@@ -9,6 +21,9 @@
             <th scope="col">Date</th>
             <th scope="col">Heure</th>
             <th scope="col">Places</th>
+            <?php if(isset($_SESSION['ID_USER'])) : ?>
+                <th scope="col"></th>
+            <?php endif; ?>
         </tr>
     </thead>
     <tbody>

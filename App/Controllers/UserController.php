@@ -35,18 +35,17 @@ class UserController {
                     $_SESSION['mail'] = $user['mail'];
 
                     // Login succeeded
-                    $_SESSION['successMess'] = "Vous êtes connecté !";
+                    $_SESSION['successMess'] = "Vous êtes connecté(e) !";
 
                     header('Location: index.php?page=home');
 
                     exit;
                 } else {
-                    $err = "Adresse Mail ou Mot de Passe incorrect..";
+                    $err = "Adresse Mail ou Mot de Passe incorrect...";
                 }
             }
         }
 
-        // Necessary to get the $err message
         include __DIR__ . '/../../templates/login.php';
     }
 
@@ -59,7 +58,7 @@ class UserController {
         $_SESSION = array();
 
         // Logout succeeded
-        $_SESSION['successMess'] = "Vous êtes déconnecté !";
+        $_SESSION['successMess'] = "Vous êtes déconnecté(e) !";
 
         header('Location: index.php?page=home');
         exit;

@@ -1,8 +1,9 @@
 <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) : ?>
-    <table class="agencesTable">
-        <thead>
+    <table class="agencesTable table table-striped table-bordered" id="agencesTable">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">Agence</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>

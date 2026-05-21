@@ -1,6 +1,6 @@
 <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) : ?>
-    <table class="usersTable">
-        <thead>
+    <table class="usersTable table table-striped table-bordered" id="usersTable">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nom</th>

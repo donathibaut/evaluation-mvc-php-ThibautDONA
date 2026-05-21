@@ -66,6 +66,8 @@ class TrajetController {
 
             // Avoid duplicated sql INSERT on refresh
             if($mw) {
+                $_SESSION['successMess'] = "Le trajet a été créé !" ;
+
                 header('Location: index.php?page=home');
                 exit;
             }
@@ -87,6 +89,8 @@ class TrajetController {
 
             // Avoid duplicated sql DELETE attempts on refresh
             if($mw) {
+                $_SESSION['successMess'] = "Le trajet a été supprimé !" ;
+
                 header('Location: index.php?page=home');
                 exit;
             }
@@ -108,6 +112,8 @@ class TrajetController {
 
             // Avoid duplicated sql INSERT on refresh
             if($mw) {
+                $_SESSION['successMess'] = "Le trajet a été modifié !" ;
+
                 header('Location: index.php?page=home');
                 exit;
             }

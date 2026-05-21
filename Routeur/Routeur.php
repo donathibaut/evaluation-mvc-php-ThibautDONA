@@ -15,6 +15,12 @@ class Routeur {
      */
     public function run() {
 
+        // Location: index.php => ?page=home
+        if(!isset($_GET['page'])) {
+            header('Location: index.php?page=home');
+            exit;
+        }
+
         //PAGES
         $page = $_GET['page'] ?? 'home';
 

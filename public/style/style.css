@@ -1,8 +1,4 @@
 @charset "UTF-8";
-* {
-  font-size: 16px;
-}
-
 /*!
  * Bootstrap  v5.3.8 (https://getbootstrap.com/)
  * Copyright 2011-2025 The Bootstrap Authors
@@ -20234,36 +20230,162 @@ textarea.form-control-lg {
   content: "爛";
 }
 
-.btn,
-.modal-content {
+body {
+  min-height: 100vh;
+  padding: 0 100px;
+  display: flex;
+  flex-direction: column;
+}
+body * {
+  font-size: 16px;
+}
+body footer {
+  width: 100%;
+  text-align: center;
+}
+body header {
+  height: 60px;
+  margin: 20px 0 10px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f8fc;
+}
+body header h1, body header .h1,
+body header p,
+body header ul {
+  margin: 0;
+}
+body header ul {
+  display: flex;
+  gap: 20px;
+}
+body header ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body header,
+body input,
+body fieldset,
+body form,
+body select,
+body .btn,
+body .errMsg,
+body .modal-content,
+body .table,
+body .successMsg {
   border-radius: 50px 5px/5px 50px;
 }
-
-footer {
-  position: fixed;
-  bottom: 0;
+body main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-ul {
+body main .table {
+  text-align: center;
+  overflow: hidden;
+}
+body main .tableTitle {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+body ul {
   list-style: none;
   padding-left: 0;
 }
-
-.logo__link {
+body .adminTableGrid {
+  display: grid;
+  grid-template: 3rem 1fr 1fr/repeat(2, 1fr);
+  gap: 20px;
+}
+body .adminTableGrid .trajetsTable {
+  grid-column: 1/4;
+}
+body .btn,
+body .btn:hover,
+body .errMsg,
+body .successMsg {
+  color: #f1f8fc;
+}
+body .errMsg {
+  width: 100%;
+  padding: 20px;
+  background-color: #cd2c2e;
+}
+body .formSection {
+  width: 100%;
+}
+body .formSection .formConnect {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+body .formSection .formTrajet {
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+}
+body .formSection .formTrajet button,
+body .formSection .formTrajet a {
+  width: fit-content;
+  height: fit-content;
+}
+body .formSection .formTrajet fieldset {
+  padding: 10px;
+  display: grid;
+}
+body .formSection .formTrajet input,
+body .formSection .formTrajet select {
+  padding: 5px;
+}
+body .formSection .formTrajet legend {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+body .formSection .formTrajet .btnContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+body .formSection .loginPageTitle {
+  text-align: center;
+}
+body .logo {
+  font-weight: 700;
+}
+body .logo__link {
   text-decoration: none;
 }
-
-.modal-body ul {
+body .modal-body ul {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-
-.tableBtn {
+body .successMsg {
+  width: 100%;
+  padding: 20px;
+  background-color: #82b864;
+}
+body .tableBtn {
   background: none;
   border: none;
   padding: 0;
   margin: 0;
+}
+body .tableSection {
+  width: 100%;
+}
+body .trajetsTable:target,
+body .usersTable:target,
+body .agencesTable:target {
+  box-shadow: 0 0 20px #0074c7;
 }
 
 /*# sourceMappingURL=style.css.map */

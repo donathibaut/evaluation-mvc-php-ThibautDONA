@@ -1,13 +1,13 @@
 <?php if(isset($_SESSION['is_admin'])) : ?>
     <nav>
-        <ul>
+        <ul class="d-flex">
             <?php 
                 //ADMIN
                 if($_SESSION['is_admin'] == 1) : 
             ?>
-                <li><a class="navAdminBtn btn btn-primary" href="index.php?page=home">Utilisateurs</a></li>
-                <li><a class="navAdminBtn btn btn-primary" href="">Agences</a></li>
-                <li><a class="navAdminBtn btn btn-primary" href="">Trajets</a></li>
+                <li><a class="navAdminBtn btn btn-secondary" href="#usersTable">Utilisateurs</a></li>
+                <li><a class="navAdminBtn btn btn-secondary" href="#agencesTable">Agences</a></li>
+                <li><a class="navAdminBtn btn btn-secondary" href="#trajetsTable">Trajets</a></li>
 
                 <li><a class="navBtn agenceCreateBtn btn btn-primary" href="index.php?page=home&form=form-agence&form-goal=create">Créer une Agence</a></li>
             <?php 

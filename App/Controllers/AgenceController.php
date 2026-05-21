@@ -10,26 +10,6 @@ use Core\Config;
  * Controller of the data from the agences table
  */
 class AgenceController {
-
-    /**
-     * Manage the relation between the webpage and the data from the database
-     * 
-     * + include -> webpage
-     */
-    public function linkAgence() {
-        $config = new Config();
-        $db = $config->getConnection();
-
-        if ($db === null) {
-            exit("Connection Error : no access to the database");
-        } else {
-            $agenceService = new AgenceService($db);
-            $agence = $agenceService->getAgencesList();
-
-            include __DIR__ . '/../../templates/home.php';
-        }
-    }
-
     /**
      * Manage the relation between the webpage and the data from the database
      * 
@@ -62,6 +42,8 @@ class AgenceController {
 
             // Avoid duplicated sql INSERT on refresh
             if($mw) {
+                $_SESSION['successMess'] = "L'agence a été créée !" ;
+
                 header('Location: index.php?page=home');
                 exit;
             }
@@ -83,6 +65,8 @@ class AgenceController {
 
             // Avoid duplicated sql DELETE attempts on refresh
             if($mw) {
+                $_SESSION['successMess'] = "L'agence a été supprimée !" ;
+
                 header('Location: index.php?page=home');
                 exit;
             }
@@ -104,6 +88,8 @@ class AgenceController {
 
             // Avoid duplicated sql INSERT on refresh
             if($mw) {
+                $_SESSION['successMess'] = "L'agence a été modifiée !" ;
+
                 header('Location: index.php?page=home');
                 exit;
             }
