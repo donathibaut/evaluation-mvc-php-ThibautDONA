@@ -14,7 +14,7 @@ class TrajetModel {
     /**
      * Constructor
      * 
-     * @param PDO $db connection instance to the database
+     * @param \PDO $db connection instance to the database
      */
     public function __construct($db)
     {

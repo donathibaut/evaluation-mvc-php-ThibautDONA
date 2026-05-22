@@ -22,7 +22,7 @@ class Routeur {
         }
 
         //PAGES
-        $page = $_GET['page'] ?? 'home';
+        $page = $_GET['page'];
 
         switch($page) {
             case 'home' :
