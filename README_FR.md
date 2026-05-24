@@ -23,7 +23,7 @@ Ce projet utilise les ressources suivantes :
 
 ## Installation
 
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||  
 / ! \ .ENV => Vous trouverez un fichier .env.example dans le répertoire /env/
 
 |-> Créez un fichier .env dans ce répertoire qui reprendra les mêmes variables.
@@ -143,7 +143,7 @@ PS : Les parties du README appelant le .env seront marquées par \*\*\*
 Lorsque tout est en place, rendez vous sur :
 http://localhost/"dossier-projet"/public/index.php
 
-"dossier-projet" => nom du dossier dans lequel se trouvera le projet
+"dossier-projet" => nom du dossier dans lequel se trouvera le projet  
 (se référer au dossier htdocs renseigné plus haut -> partie "APACHE / PHP")
 
 ### Identifiants et Mots de Passe
