@@ -40,7 +40,7 @@ DB_NAME="bdd-tpak" - (nom de la base de données)
 
 ---
 
-PS : Les parties du README appelant le .env seront marquées par \*\*\*
+PS : Les parties du README appelant le .env seront marquées par \*\*\*  
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 ### GIT
