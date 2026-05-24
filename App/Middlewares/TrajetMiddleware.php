@@ -13,7 +13,7 @@ class TrajetMiddleware {
     /**
      * Constructor
      * 
-     * @param PDO $db call the model
+     * @param \PDO $db call the model
      */
     public function __construct($db)
     {

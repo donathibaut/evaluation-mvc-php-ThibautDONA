@@ -10,7 +10,7 @@ class UserService {
     /**
      * Constructor
      * 
-     * @param PDO $db call the model
+     * @param \PDO $db call the model
      */
     public function __construct($db)
     {
@@ -20,7 +20,7 @@ class UserService {
     /**
      * Authenticate the connecting user
      * 
-     * @return array user data
+     * @return array|bool user data
      */
     public function auth($mail, $password) {
 

@@ -14,7 +14,7 @@ class AgenceModel {
     /**
      * Constructor
      * 
-     * @param PDO $db connection instance to the database
+     * @param \PDO $db connection instance to the database
      */
     public function __construct($db)
     {
@@ -86,6 +86,8 @@ class AgenceModel {
                 exit("Erreur SQL : Un trajet utilise déjà cette agence !");
             }
         }
+
+        return false;
     }
 
     /**
